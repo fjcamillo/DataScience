@@ -12,7 +12,8 @@ questions created:
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from matplotlib import style
+style('ggplot')
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 
