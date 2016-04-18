@@ -23,10 +23,10 @@ def getQuestionTwo(data):
         'Female': []
     })
     for i in data:
-        if titanic.values[i+1, 3] == "male":
-            gender.values[i+1, 0] = 1
-        elif titanic.values[i+1, 3] == "female":
-            gender.values[0, i+1] = [0, 1]
+        if titanic.values[i, 3] == "male":
+            gender.values[i, 0] = 1
+        elif titanic.values[i, 3] == "female":
+            gender.values[0, i] = [0, 1]
     return gender
 def main():
     print(getQuestionTwo(titanic))
