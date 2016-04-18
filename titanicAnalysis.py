@@ -12,3 +12,11 @@ questions created:
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+titanic = pd.DataFrame.from_csv('titanic_data.csv')
+
+def main():
+    pass
+
+if __name__ == '__main__':
+    main()
