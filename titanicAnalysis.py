@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import style
-style('ggplot')
+# style('ggplot')
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 
@@ -22,11 +22,11 @@ def getQuestionTwo(data):
         'Male': [],
         'Female': []
     })
-    for i in data:
-        if titanic.values[i, 3] == "male":
+    for i in len(data.values[0]):
+        if data.values[i, 3] == "male":
             gender.values[i, 0] = 1
-        elif titanic.values[i, 3] == "female":
-            gender.values[0, i] = [0, 1]
+        elif data.values[i, 3] == "female":
+            gender.values[0, i] = 1
     return gender
 def main():
     print(getQuestionTwo(titanic))

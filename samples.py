@@ -6,10 +6,10 @@ titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 # print(titanic.loc())
 
-if titanic.values[0, 3] == "male":
-    print("Yey")
+# if titanic.values[0, 3] == "male":
+#     print("Yey")
 
-
+print(titanic.values[0])
 # print(titanic.values[0, 3])
 # print(titanic.columns)
 # print(titanic)
