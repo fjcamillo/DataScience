@@ -9,7 +9,7 @@ titanic = pd.DataFrame.from_csv('titanic_data.csv')
 # if titanic.values[0, 3] == "male":
 #     print("Yey")
 
-print(titanic.values[0])
+print(titanic['Sex'][1])
 # print(titanic.values[0, 3])
 # print(titanic.columns)
 # print(titanic)
