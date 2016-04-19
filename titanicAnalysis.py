@@ -9,11 +9,6 @@ questions created:
 6. Do persons with 2 or more first names have a higher chance of survival?
 7. Does having a wife or husband (off board or on board) affect the chance of survival?
 """
-#Cleaning
-"""
-2. Gender was Complete there was no null or nan value, created a proxy: male = 1, female = 0
-"""
-
 
 import numpy as np
 import pandas as pd
@@ -23,9 +18,19 @@ style.use('ggplot')
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 
+def get_question_one(data):
+    pass
+
+
 def get_question_two(data):
+
+    # '#' Stores the number of living males
     male_count = 0
+
+    # '#' Stores the number of living females
     female_count = 0
+
+    # '#' Works on the data
     for i in range(1, len(data['Sex'])+1, 1):
         actual_values = list(data.loc[i:i, 'Sex'])
         survived = list(data.loc[i:i, 'Survived'])
@@ -50,6 +55,30 @@ def get_question_two(data):
     total_number_of_survivors = data['Survived'].sum()
 
     return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count
+
+
+def get_question_three(data):
+    per_w_sibsp = 0
+
+    for i in range(1, len(data['Sibsp']), 1):
+        
+
+
+def get_question_four(data):
+    pass
+
+
+def get_question_five(data):
+    pass
+
+
+def get_question_six(data):
+    pass
+
+
+def get_question_seven(data):
+    pass
+
 
 
 def main():
