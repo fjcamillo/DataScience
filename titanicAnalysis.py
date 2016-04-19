@@ -30,7 +30,7 @@ def get_question_two(data):
     # '#' Stores the number of living females
     female_count = 0
 
-    # '#' Works on the data
+    # '#' Works on the data, changes male to 1, and female to 0
     for i in range(1, len(data['Sex'])+1, 1):
         actual_values = list(data.loc[i:i, 'Sex'])
         survived = list(data.loc[i:i, 'Survived'])
@@ -60,9 +60,15 @@ def get_question_two(data):
 
 
 def get_question_three(data):
+
+    # '#' Stores the person with siblings count
     per_w_sibsp = 0
+
+    # '#' Stores the surviving persons with siblings count
     survivors_w_sibsp = 0
 
+    # '#' Works on the Data, counts the person with siblings and also counts
+    # '#' the surviving persons that has a sibling on board
     for i in range(1, len(data['Sibsp'])+1, 1):
         test_sibsp = list(data.loc[i:i, "Sibsp"])
         survived = list(data.loc[i:i, "Survived"])
@@ -78,15 +84,22 @@ def get_question_three(data):
     # '#'Get the total number of survivors from the data set
     total_number_of_survivors = data['Survived'].sum()
 
+    # '#'Gets the total number of siblings on board
     total_sibsps = data['Sibsp'].sum()
 
     return per_w_sibsp, survivors_w_sibsp, total_sibsps, total_number_of_survivors
 
 
 def get_question_four(data):
+
+    # '#' Stores the PClass data according to the economic status of the person
     thirdclass_total = 0
     secondclass_total = 0
     firstclass_total = 0
+
+    # '#' Works on the Data, The PClass data is divided if the data is going to
+    # '#' the third class, the second class, or the first class
+    # '#' Also counts the number of persons that survived according to their economic status
     for i in range(1, len(data['Pclass']) + 1, 1):
         actual_class = list(data.loc[i:i, "Pclass"])
         survived = list(data.loc[i:i, "Survived"])
@@ -196,5 +209,6 @@ def main():
 
     question_six = get_question_six(titanic)
     print(question_six, "Answers on question 6")
+
 if __name__ == '__main__':
     main()
