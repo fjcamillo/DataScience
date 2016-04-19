@@ -61,8 +61,8 @@ def get_question_three(data):
     per_w_sibsp = 0
 
     for i in range(1, len(data['Sibsp']), 1):
+        test_sibsp = list(data.iloc[i:i, "Sibsp"])
         
-
 
 def get_question_four(data):
     pass
