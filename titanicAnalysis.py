@@ -145,21 +145,30 @@ def get_question_five(data):
 
 def get_question_six(data):
     name_guides = ['Mr.', 'Ms.', 'Miss.', 'Mister.', 'Mrs.', 'Don.',
-                   'Master.', 'Rev.', 'Dr.', 'Mme.', 'Major.', 'Sir.', ]
-    for i in range(1, len(data['Name'])+1, 1):
-        pass
+                   'Master.', 'Rev.', 'Dr.', 'Mme.', 'Major.', 'Sir.',
+                   'Miss', 'Ms', 'Mr', 'Rev', 'Mme', 'Master', 'Sir']
+    two_firstname = 0
+    one_firstname = 0
+    morethantwo_firstname = 0
+    for i in range(1, len(data['Survived'])+1, 1):
+        actual_names = list(data.loc[i:i, "Name"])
+        separated = str(actual_names[0]).split(" ")
+        for j in range(0, len(separated), 1):
+            if separated[j] in name_guides:
+                firstname_count = len(separated) - (j+1)
+                if firstname_count == 2:
+                    two_firstname += 1
+                elif firstname_count == 1:
+                    one_firstname += 1
+                elif firstname_count > 2:
+                    morethantwo_firstname += 1
+
+    return two_firstname, one_firstname, morethantwo_firstname
 
 
 def get_question_seven(data):
     pass
 
-
-def get_question_eight(data):
-    pass
-
-
-def get_question_nine(data):
-    pass
 
 
 def main():
@@ -183,6 +192,9 @@ def main():
     print(question_four, "Answers on question 4")
 
     question_five = get_question_five(titanic)
-    print(question_five, "Answers on question 4")
+    print(question_five, "Answers on question 5")
+
+    question_six = get_question_six(titanic)
+    print(question_six, "Answers on question 6")
 if __name__ == '__main__':
     main()
