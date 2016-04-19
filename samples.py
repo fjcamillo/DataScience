@@ -4,12 +4,14 @@ import matplotlib.pyplot as plt
 
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
-sample_df = pd.DataFrame({
-    'a': [1,2,3,4,5,6,7],
-    'b': [9,8,7,4,5,6,3]
-}, index=['q','w','e','r','t','y','u'])
+a = []
+a.append(1)
+a.append(2)
+print(a)
 
-print(sample_df)
+
+
+# print(titanic.loc[1:1, "Embarked"])
 # if titanic.values[0, 3] == "male":
 #     print("Yey")
 

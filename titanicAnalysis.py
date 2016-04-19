@@ -106,28 +106,40 @@ def get_question_four(data):
 
 
 def get_question_five(data):
-    fromS = 0
-    fromQ = 0
-    fromC = 0
+    froms = 0
+    fromq = 0
+    fromc = 0
+    ageS = pd.DataFrame()
+    ageC = pd.DataFrame()
+    ageQ = pd.DataFrame()
     for i in range(1, len(data['Age'])+1, 1):
         location = list(data.loc[i:i, "Embarked"])
-        if location[0].lower() == "s":
-            fromS += 1
-            ageS = pd.DataFrame({
-                str(data.loc[i:i, "Age"]): [],
-            })
-        elif location[0].lower() == "c":
-            fromC += 1
-        elif location[0].lower() == "q":
-            fromQ += 1
+        actual_age = list(data.loc[i:i, "Age"])
+        if str(location[0]).lower() == "s":
+            froms += 1
+            ageS.add(pd.DataFrame({
+                str(actual_age[0]): 1
+            }, index=['a']), fill_value=0)
+        elif str(location[0]).lower() == "c":
+            fromc += 1
+            ageC.add(pd.DataFrame({
+                str(actual_age[0]): 1
+            }, index=['a']), fill_value=0)
+        elif str(location[0]).lower() == "q":
+            fromq += 1
+            ageQ.add(pd.DataFrame({
+                str(actual_age[0]): 1
+            }, index=['a']), fill_value=0)
         else:
             pass
 
     total_number_of_survivors = data['Survived'].sum()
 
+    summationS = ageS.sum(axis=0)
+    summationQ = ageQ.sum(axis=0)
+    summationC = ageC.sum(axis=0)
 
-
-    return fromS, fromQ, fromC, total_number_of_survivors,
+    return froms, fromq, fromc, total_number_of_survivors, summationC, summationQ, summationS
 
 
 def get_question_six(data):
@@ -159,5 +171,10 @@ def main():
     question_three = get_question_three(titanic)
     print(question_three, "Answers on question 3")
 
+    question_four = get_question_four(titanic)
+    print(question_four, "Answers on question 4")
+
+    question_five = get_question_five(titanic)
+    print(question_five, "Answers on question 4")
 if __name__ == '__main__':
     main()
