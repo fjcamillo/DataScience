@@ -56,11 +56,12 @@ def get_question_two(data):
 
     total_count = data['Sex'].count()
 
-    if male_count > female_count:
-        pass
-    elif female_count > male_count:
-        pass
-    else
+    # if male_count > female_count:
+    #     pass
+    # elif female_count > male_count:
+    #     pass
+    # else:
+    #     pass
 
     return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count, total_count
 
@@ -130,9 +131,16 @@ def get_question_five(data):
     froms = 0
     fromq = 0
     fromc = 0
-    ageS = pd.DataFrame()
-    ageC = pd.DataFrame()
-    ageQ = pd.DataFrame()
+
+    ageS = pd.DataFrame({
+        '0': 0
+    }, index=['summation'])
+    ageC = pd.DataFrame({
+        '0': 0
+    }, index=['summation'])
+    ageQ = pd.DataFrame({
+        '0': 0
+    }, index=['summation'])
 
     for i in range(1, len(data['Age'])+1, 1):
         location = list(data.loc[i:i, "Embarked"])
@@ -141,27 +149,22 @@ def get_question_five(data):
             froms += 1
             ageS.add(pd.DataFrame({
                 str(actual_age[0]): 1
-            }, index=['a']), fill_value=0)
+            }, index=['summation']), fill_value=0)
+
         elif str(location[0]).lower() == "c":
             fromc += 1
-            ageC.add(pd.DataFrame({
-                str(actual_age[0]): 1
-            }, index=['a']), fill_value=0)
+
         elif str(location[0]).lower() == "q":
             fromq += 1
-            ageQ.add(pd.DataFrame({
-                str(actual_age[0]): 1
-            }, index=['a']), fill_value=0)
+
         else:
             pass
 
     total_number_of_survivors = data['Survived'].sum()
 
-    summationS = ageS.sum(axis=0)
-    summationQ = ageQ.sum(axis=0)
-    summationC = ageC.sum(axis=0)
 
-    return froms, fromq, fromc, total_number_of_survivors, summationC, summationQ, summationS
+
+    return froms, fromq, fromc, total_number_of_survivors,ageS
 
 
 def get_question_six(data):
@@ -207,7 +210,7 @@ def main():
           "There are a total of %s persons on the data set\n"
           "The are %s persons on-board that had a sibling or a spouse with them\n"
           "%s persons with siblings survive the tragedy"
-          % (question_three[3], question_three[0], question_three[1]))
+          % (question_three[0], question_three[3], question_three[1]))
 
     question_four = get_question_four(titanic)
     print(question_four, "Answers on question 4")
