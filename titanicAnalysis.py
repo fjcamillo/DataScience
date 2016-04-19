@@ -5,7 +5,7 @@ questions created:
 2. Does gender affect the survival of the on-board passengers and crew?
 3. Does having a sibling or spouse on board affects the survival of the passenger?
 4. Does economic status affects the survival of the person
-5. Is there a relationship between the age and the location embarked from on the  survival of the person?
+5. Is there a relationship between the age and the location embarked from on the survival of the person?
 6. Do persons with 2 or more first names have a higher chance of survival?
 7. Does having a wife or husband (off board or on board) affect the chance of survival?
 """
@@ -75,9 +75,12 @@ def get_question_three(data):
         else:
             pass
 
+    # '#'Get the total number of survivors from the data set
+    total_number_of_survivors = data['Survived'].sum()
+
     total_sibsps = data['Sibsp'].sum()
 
-    return per_w_sibsp, survivors_w_sibsp, total_sibsps
+    return per_w_sibsp, survivors_w_sibsp, total_sibsps, total_number_of_survivors
 
 
 def get_question_four(data):
@@ -96,9 +99,35 @@ def get_question_four(data):
         else:
             pass
 
+    # '#'Get the total number of survivors from the data set
+    total_number_of_survivors = data['Survived'].sum()
+
+    return firstclass_total, secondclass_total, thirdclass_total, total_number_of_survivors
+
 
 def get_question_five(data):
-    pass
+    fromS = 0
+    fromQ = 0
+    fromC = 0
+    for i in range(1, len(data['Age'])+1, 1):
+        location = list(data.loc[i:i, "Embarked"])
+        if location[0].lower() == "s":
+            fromS += 1
+            ageS = pd.DataFrame({
+                str(data.loc[i:i, "Age"]): [],
+            })
+        elif location[0].lower() == "c":
+            fromC += 1
+        elif location[0].lower() == "q":
+            fromQ += 1
+        else:
+            pass
+
+    total_number_of_survivors = data['Survived'].sum()
+
+
+
+    return fromS, fromQ, fromC, total_number_of_survivors,
 
 
 def get_question_six(data):
