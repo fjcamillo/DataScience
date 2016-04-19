@@ -5,18 +5,13 @@ import matplotlib.pyplot as plt
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 for i in range(1, len(titanic['Sex']), 1):
-    if titanic['Sex'][i] == 'male':
-        titanic['Sex'][i] = 1
-    elif titanic['Sex'][i] == 'female':
-        titanic['Sex'][i] = 0
-    else:
-        pass
+    actual_values = list(titanic.loc[i:i, 'Sex'])
+    if str(actual_values[0]) == "male":
+        titanic.loc[i:i, 'Sex'] = 1
 
-print(titanic['Sex'])
-
-dfmi.__getitem__('one').__setitem__('second', value)
-
+# print(titanic['Sex'])
 # print(titanic.loc())
+print(str(titanic.loc[12:12, 'Sex']))
 
 # if titanic.values[0, 3] == "male":
 #     print("Yey")

@@ -18,12 +18,15 @@ titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 
 def getQuestionTwo(data):
-    for i in range(0, len(data['Sex']), 1):
-        if data['Sex'][i] == u'male':
-            data['Sex'][i] = 1
-        elif data['Sex'][i] == u'female':
-            data['Sex'][i] = 0
-    return data
+    for i in range(1, len(data['Sex'])+1, 1):
+        actual_values = list(data.loc[i:i, 'Sex'])
+        if str(actual_values[0]) == "male":
+            data.loc[i:i, 'Sex'] = 1
+        elif str(actual_values[0]) == "female":
+            data.loc[i:i, 'Sex'] = 0
+        else:
+            pass
+    return data['Sex']
 
 
 def main():
