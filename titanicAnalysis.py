@@ -112,6 +112,7 @@ def get_question_five(data):
     ageS = pd.DataFrame()
     ageC = pd.DataFrame()
     ageQ = pd.DataFrame()
+
     for i in range(1, len(data['Age'])+1, 1):
         location = list(data.loc[i:i, "Embarked"])
         actual_age = list(data.loc[i:i, "Age"])
@@ -143,7 +144,10 @@ def get_question_five(data):
 
 
 def get_question_six(data):
-    pass
+    name_guides = ['Mr.', 'Ms.', 'Miss.', 'Mister.', 'Mrs.', 'Don.',
+                   'Master.', 'Rev.', 'Dr.', 'Mme.', 'Major.', 'Sir.', ]
+    for i in range(1, len(data['Name'])+1, 1):
+        pass
 
 
 def get_question_seven(data):
@@ -169,7 +173,11 @@ def main():
              question_two[2], question_two[3], question_two[4]))
 
     question_three = get_question_three(titanic)
-    print(question_three, "Answers on question 3")
+    print("Question #3 Answer \n"
+          "There are a total of %s persons on the data set\n"
+          "The are %s persons on-board that had a sibling or a spouse with them\n"
+          "%s persons with siblings survive the tragedy"
+          % (question_three[3], question_three[0], question_three[1]))
 
     question_four = get_question_four(titanic)
     print(question_four, "Answers on question 4")
