@@ -56,6 +56,12 @@ def get_question_two(data):
 
     total_count = data['Sex'].count()
 
+    if male_count > female_count:
+        pass
+    elif female_count > male_count:
+        pass
+    else
+
     return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count, total_count
 
 
@@ -86,6 +92,8 @@ def get_question_three(data):
 
     # '#'Gets the total number of siblings on board
     total_sibsps = data['Sibsp'].sum()
+
+    evaluate = ""
 
     return per_w_sibsp, survivors_w_sibsp, total_sibsps, total_number_of_survivors
 
