@@ -54,7 +54,12 @@ def get_question_two(data):
 
 def main():
     question_two = get_question_two(titanic)
-    print(question_two)
+    # print(question_two)
+    plt.plot(2, question_two[2], label="Question2")
+    plt.title("Question 2")
+    plt.xlabel("Gender")
+    plt.ylabel("Number of Survivors")
+    plt.show()
 
 if __name__ == '__main__':
     main()
