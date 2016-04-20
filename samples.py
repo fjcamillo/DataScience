@@ -4,13 +4,10 @@ import matplotlib.pyplot as plt
 
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
-a = pd.DataFrame({'b':1}, index=['sum'])
+a = ["sMrs"]
 
-b = pd.DataFrame({'a':2}, index=['sum'])
-
-c = a.add(b, fill_value=0)
-
-print(c)
+if "sMrs" in a:
+    print("y")
 
 # print(titanic.loc[1:1, "Embarked"])
 # if titanic.values[0, 3] == "male":

@@ -172,11 +172,12 @@ def get_question_six(data):
                    'Miss', 'Ms', 'Mr', 'Rev', 'Mme', 'Master', 'Sir']
     two_firstname = 0
     one_firstname = 0
+    # checker = 0
     morethantwo_firstname = 0
     for i in range(1, len(data['Survived'])+1, 1):
         actual_names = list(data.loc[i:i, "Name"])
         separated = str(actual_names[0]).split(" ")
-        for j in range(0, len(separated), 1):
+        for j in range(0, len(separated)-1, 1):
             if separated[j] in name_guides:
                 firstname_count = len(separated) - (j+1)
                 if firstname_count == 2:
@@ -186,8 +187,9 @@ def get_question_six(data):
                 elif firstname_count > 2:
                     morethantwo_firstname += 1
 
-    return two_firstname, one_firstname, morethantwo_firstname
 
+
+    return two_firstname, one_firstname, morethantwo_firstname,
 
 def get_question_seven(data):
     pass
@@ -195,30 +197,30 @@ def get_question_seven(data):
 
 
 def main():
-    question_two = get_question_two(titanic)
-    print("Question #2 Answer \n"
-          "There are a total of %s persons on the data set \n"
-          "There are %s Men and %s Women on board\n"
-          "of the %s on-board only %s survived\n"
-          "%s of those are men, while the remaining %s are women\n"
-          % (question_two[5], question_two[0], question_two[1], question_two[5],
-             question_two[2], question_two[3], question_two[4]))
-
-    question_three = get_question_three(titanic)
-    print("Question #3 Answer \n"
-          "There are a total of %s persons on the data set\n"
-          "The are %s persons on-board that had a sibling or a spouse with them\n"
-          "%s persons with siblings survive the tragedy"
-          % (question_three[0], question_three[3], question_three[1]))
-
+    # question_two = get_question_two(titanic)
+    # print("Question #2 Answer \n"
+    #       "There are a total of %s persons on the data set \n"
+    #       "There are %s Men and %s Women on board\n"
+    #       "of the %s on-board only %s survived\n"
+    #       "%s of those are men, while the remaining %s are women\n"
+    #       % (question_two[5], question_two[0], question_two[1], question_two[5],
+    #          question_two[2], question_two[3], question_two[4]))
+    #
+    # question_three = get_question_three(titanic)
+    # print("Question #3 Answer \n"
+    #       "There are a total of %s persons on the data set\n"
+    #       "The are %s persons on-board that had a sibling or a spouse with them\n"
+    #       "%s persons with siblings survive the tragedy"
+    #       % (question_three[0], question_three[3], question_three[1]))
+    #
     # question_four = get_question_four(titanic)
     # print(question_four, "Answers on question 4")
+    #
+    # question_five = get_question_five(titanic)
+    # print(question_five[4], "Answers on question 5")
 
-    question_five = get_question_five(titanic)
-    print(question_five[4], "Answers on question 5")
-
-    # question_six = get_question_six(titanic)
-    # print(question_six, "Answers on question 6")
+    question_six = get_question_six(titanic)
+    print(question_six, "Answers on question 6")
 
 if __name__ == '__main__':
     main()
