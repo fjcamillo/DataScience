@@ -17,6 +17,20 @@ from matplotlib import style
 style.use('ggplot')
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
+def cleaner(data):
+    count = data['Name'].count()
+    data.fillna(0)
+    #change male and female to 1 and 0
+    for i in range(1, count, 1):
+        actual_gender = list(data.loc[i:i, 'Sex'])
+        actual_age = list(data.loc[i:i, 'Age'])
+        if str(actual_gender[0]) == 'male':
+            data.loc[i:i, 'Sex'] = 1
+        elif str(actual_gender[0]) == 'female':
+            data.loc[i:i, 'Sex'] = 0
+
+    return data
+
 
 def get_question_one(data):
     pass
@@ -219,8 +233,9 @@ def main():
     # question_five = get_question_five(titanic)
     # print(question_five[4], "Answers on question 5")
 
-    question_six = get_question_six(titanic)
-    print(question_six, "Answers on question 6")
-
+    # question_six = get_question_six(titanic)
+    # print(question_six, "Answers on question 6")
+    out = cleaner(titanic)
+    print(out)
 if __name__ == '__main__':
     main()
