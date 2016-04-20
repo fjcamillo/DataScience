@@ -132,39 +132,38 @@ def get_question_five(data):
     fromq = 0
     fromc = 0
 
-    ageS = pd.DataFrame({
-        '0': 0
-    }, index=['summation'])
-    ageC = pd.DataFrame({
-        '0': 0
-    }, index=['summation'])
-    ageQ = pd.DataFrame({
-        '0': 0
-    }, index=['summation'])
+    ageS = pd.DataFrame()
+    ageC = pd.DataFrame()
+    ageQ = pd.DataFrame()
 
     for i in range(1, len(data['Age'])+1, 1):
         location = list(data.loc[i:i, "Embarked"])
         actual_age = list(data.loc[i:i, "Age"])
         if str(location[0]).lower() == "s":
             froms += 1
-            ageS.add(pd.DataFrame({
+            x = pd.DataFrame({
                 str(actual_age[0]): 1
-            }, index=['summation']), fill_value=0)
+            }, index=['summation'])
+            ageS = ageS.add(x, fill_value=0)
 
         elif str(location[0]).lower() == "c":
             fromc += 1
-
+            y = pd.DataFrame({
+                str(actual_age[0]): 1
+            }, index=['summation'])
+            ageC = ageC.add(y, fill_value=0)
         elif str(location[0]).lower() == "q":
             fromq += 1
-
+            z = pd.DataFrame({
+                str(actual_age[0]): 1
+            }, index=['summation'])
+            ageQ = ageQ.add(z, fill_value=0)
         else:
             pass
 
     total_number_of_survivors = data['Survived'].sum()
 
-
-
-    return froms, fromq, fromc, total_number_of_survivors,ageS
+    return froms, fromq, fromc, total_number_of_survivors, ageS, ageC, ageQ
 
 
 def get_question_six(data):
@@ -212,14 +211,14 @@ def main():
           "%s persons with siblings survive the tragedy"
           % (question_three[0], question_three[3], question_three[1]))
 
-    question_four = get_question_four(titanic)
-    print(question_four, "Answers on question 4")
+    # question_four = get_question_four(titanic)
+    # print(question_four, "Answers on question 4")
 
     question_five = get_question_five(titanic)
-    print(question_five, "Answers on question 5")
+    print(question_five[4], "Answers on question 5")
 
-    question_six = get_question_six(titanic)
-    print(question_six, "Answers on question 6")
+    # question_six = get_question_six(titanic)
+    # print(question_six, "Answers on question 6")
 
 if __name__ == '__main__':
     main()
