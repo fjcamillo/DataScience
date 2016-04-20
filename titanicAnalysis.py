@@ -18,17 +18,9 @@ style.use('ggplot')
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 def cleaner(data):
-    count = data['Name'].count()
-    data.fillna(0)
-    #change male and female to 1 and 0
-    for i in range(1, count, 1):
-        actual_gender = list(data.loc[i:i, 'Sex'])
-        actual_age = list(data.loc[i:i, 'Age'])
-        if str(actual_gender[0]) == 'male':
-            data.loc[i:i, 'Sex'] = 1
-        elif str(actual_gender[0]) == 'female':
-            data.loc[i:i, 'Sex'] = 0
-
+    data.fillna(value=0, inplace=True)
+    data['Sex'].replace('female', 0, inplace=True)
+    data['Sex'].replace('male', 1, inplace=True)
     return data
 
 
@@ -52,12 +44,10 @@ def get_question_two(data):
             data.loc[i:i, 'Sex'] = 1
             if survived[0] == 1:
                 male_count += 1
-        elif str(actual_values[0]) == "female":
+        else:
             data.loc[i:i, 'Sex'] = 0
             if survived[0] == 1:
                 female_count += 1
-        else:
-            pass
 
     # '#'Gets the total number of male that was on the ship
     number_of_male_ob = data['Sex'].sum()
@@ -175,6 +165,8 @@ def get_question_five(data):
         else:
             pass
 
+    
+
     total_number_of_survivors = data['Survived'].sum()
 
     return froms, fromq, fromc, total_number_of_survivors, ageS, ageC, ageQ
@@ -200,8 +192,6 @@ def get_question_six(data):
                     one_firstname += 1
                 elif firstname_count > 2:
                     morethantwo_firstname += 1
-
-
 
     return two_firstname, one_firstname, morethantwo_firstname,
 

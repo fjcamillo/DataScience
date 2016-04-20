@@ -4,18 +4,8 @@ import matplotlib.pyplot as plt
 
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
-a = ["sMrs"]
-
-if "sMrs" in a:
-    print("y")
-
-# print(titanic.loc[1:1, "Embarked"])
-# if titanic.values[0, 3] == "male":
-#     print("Yey")
-
-# print(titanic['Sex'][1])
-# print(titanic)
-# print(titanic.values[0, 3])
-# print(titanic.columns)
-# print(titanic)
-# print(titanic.describe())
+titanic['Sex'].replace('female', 0, inplace=True)
+titanic['Sex'].replace('male', 1, inplace=True)
+titanic.fillna(value=0, inplace=True)
+mean = titanic.groupby('Sex').mean()['Age']
+print(mean)
