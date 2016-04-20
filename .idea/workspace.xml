@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c34978cd-308f-44ee-8fae-72b9f9bd75eb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DataAnalysis/.~lock.titanic_data.csv#" afterPath="$PROJECT_DIR$/../DataAnalysis/.~lock.titanic_data.csv#" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/titanicAnalysis.py" afterPath="$PROJECT_DIR$/titanicAnalysis.py" />
     </list>
     <ignored path="Titanic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -16,7 +17,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Titanic$titanicAnalysis.coverage" NAME="titanicAnalysis Coverage Results" MODIFIED="1461123388851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Titanic$titanicAnalysis.coverage" NAME="titanicAnalysis Coverage Results" MODIFIED="1461124692725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Titanic$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1461058350593" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Titanic$samples.coverage" NAME="samples Coverage Results" MODIFIED="1461122892561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Titanic$Test__Site.coverage" NAME="Test: Site Coverage Results" MODIFIED="1461058339565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -36,13 +37,10 @@
       <file leaf-file-name="titanicAnalysis.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/titanicAnalysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+            <state relative-caret-position="980">
+              <caret line="237" column="27" selection-start-line="237" selection-start-column="27" selection-end-line="237" selection-end-column="27" />
               <folding>
                 <element signature="e#639#657#0" expanded="true" />
-                <marker date="1461123388801" expanded="false" signature="2653:3651" placeholder="..." />
-                <marker date="1461123388801" expanded="false" signature="3682:4694" placeholder="..." />
-                <marker date="1461123388801" expanded="false" signature="4725:5812" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -542,7 +540,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2490392" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -550,7 +548,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.94336814" sideWeight="0.49730977" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33830103" sideWeight="0.49730977" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -592,9 +590,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#639#657#0" expanded="true" />
-            <marker date="1461123388801" expanded="false" signature="2653:3651" placeholder="..." />
-            <marker date="1461123388801" expanded="false" signature="3682:4694" placeholder="..." />
-            <marker date="1461123388801" expanded="false" signature="4725:5812" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -615,9 +610,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#639#657#0" expanded="true" />
-            <marker date="1461123388801" expanded="false" signature="2653:3651" placeholder="..." />
-            <marker date="1461123388801" expanded="false" signature="3682:4694" placeholder="..." />
-            <marker date="1461123388801" expanded="false" signature="4725:5812" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -681,13 +673,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/titanicAnalysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        <state relative-caret-position="980">
+          <caret line="237" column="27" selection-start-line="237" selection-start-column="27" selection-end-line="237" selection-end-column="27" />
           <folding>
             <element signature="e#639#657#0" expanded="true" />
-            <marker date="1461123388801" expanded="false" signature="2653:3651" placeholder="..." />
-            <marker date="1461123388801" expanded="false" signature="3682:4694" placeholder="..." />
-            <marker date="1461123388801" expanded="false" signature="4725:5812" placeholder="..." />
           </folding>
         </state>
       </provider>

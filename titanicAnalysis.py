@@ -211,30 +211,35 @@ def get_question_seven(data):
 
 
 def main():
-    # question_two = get_question_two(titanic)
-    # print("Question #2 Answer \n"
-    #       "There are a total of %s persons on the data set \n"
-    #       "There are %s Men and %s Women on board\n"
-    #       "of the %s on-board only %s survived\n"
-    #       "%s of those are men, while the remaining %s are women\n"
-    #       % (question_two[5], question_two[0], question_two[1], question_two[5],
-    #          question_two[2], question_two[3], question_two[4]))
-    #
-    # question_three = get_question_three(titanic)
-    # print("Question #3 Answer \n"
-    #       "There are a total of %s persons on the data set\n"
-    #       "The are %s persons on-board that had a sibling or a spouse with them\n"
-    #       "%s persons with siblings survive the tragedy"
-    #       % (question_three[0], question_three[3], question_three[1]))
-    #
-    # question_four = get_question_four(titanic)
-    # print(question_four, "Answers on question 4")
-    #
-    # question_five = get_question_five(titanic)
-    # print(question_five[4], "Answers on question 5")
+    question_two = get_question_two(titanic)
+    print("Question #2 Answer \n"
+          "There are a total of %s persons on the data set \n"
+          "There are %s Men and %s Women on board\n"
+          "of the %s on-board only %s survived\n"
+          "%s of those are men, while the remaining %s are women\n"
+          % (question_two[5], question_two[0], question_two[1], question_two[5],
+             question_two[2], question_two[3], question_two[4]))
 
-    # question_six = get_question_six(titanic)
-    # print(question_six, "Answers on question 6")
+    question_three = get_question_three(titanic)
+    print("Question #3 Answer \n"
+          "There are a total of %s persons on the data set\n"
+          "The are %s persons on-board that had a sibling or a spouse with them\n"
+          "%s persons with siblings survive the tragedy"
+          % (question_three[0], question_three[3], question_three[1]))
+
+    question_four = get_question_four(titanic)
+    print("Question #4 Answer \n"
+          "There are a total of %s persons on the data set\n"
+          "%s are from the first class, %s are from the second class and %s are from the third class\n"
+          % (question_four[3], question_four[0], question_four[1], question_four[2]))
+
+    question_five = get_question_five(titanic)
+    print("Question #5 Answer \n"
+          "Ther are a total")
+    print(question_five[4], "Answers on question 5")
+
+    question_six = get_question_six(titanic)
+    print(question_six, "Answers on question 6")
     out = cleaner(titanic)
     print(out)
 if __name__ == '__main__':
