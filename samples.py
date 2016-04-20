@@ -13,3 +13,5 @@ titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 lst = ['francisc', 'jerhone', 'camillo', 'francisc jerhone']
 x = [word for words in lst for word in words.split()]
+print(x)
+

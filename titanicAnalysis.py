@@ -46,15 +46,16 @@ def get_question_two(data):
     number_of_female_ob = data['Sex'].count() - int(number_of_male_ob)
     total_number_of_survivors = data['Survived'].sum()
     total_count = data['Sex'].count()
-    return number_of_male_ob, number_of_female_ob, total_number_of_survivors, total_count
+    female_count = 0
+    male_count = 0
+    for i in range(1, len(data['Sex'])+1, 1):
+        male_count += 1 if int(list(data.loc[i:i, 'Sex'])[0]) == 1 else 0
+        female_count += 1 if int(list(data.loc[i:i, 'Sex'])[0]) == 0 else 0
+    return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count, total_count,
 
 
 def get_question_three(data):
-
-    # '#' Stores the person with siblings count
     per_w_sibsp = 0
-
-    # '#' Stores the surviving persons with siblings count
     survivors_w_sibsp = 0
 
     # '#' Works on the Data, counts the person with siblings and also counts
@@ -64,17 +65,10 @@ def get_question_three(data):
         survived = list(data.loc[i:i, "Survived"])
         if int(str(test_sibsp[0])) > 0:
             per_w_sibsp += 1
-            survivors_w_sibsp += 1 if survived[0] == 1 else survivors_w_sibsp
+            survivors_w_sibsp += 1 if survived[0] == 1 else 0
 
-
-
-    # '#'Get the total number of survivors from the data set
     total_number_of_survivors = data['Survived'].sum()
-
-    # '#'Gets the total number of siblings on board
     total_sibsps = data['Sibsp'].sum()
-
-    evaluate = ""
 
     return per_w_sibsp, survivors_w_sibsp, total_sibsps, total_number_of_survivors
 
@@ -111,7 +105,6 @@ def get_question_five(data):
     froms = 0
     fromq = 0
     fromc = 0
-
     ageS = pd.DataFrame()
     ageC = pd.DataFrame()
     ageQ = pd.DataFrame()
@@ -155,10 +148,10 @@ def get_question_six(data):
     # checker = 0
     morethantwo_firstname = 0
     for i in range(1, len(data['Survived'])+1, 1):
-        actual_names = list(data.loc[i:i, "Name"])
-        separated = str(actual_names[0]).split(" ")
+        separated = str(list(data.loc[i:i, "Name"])[0]).split(" ")
+        survival = int(list(data.loc[i:i, 'Survived'])[0])
         for j in range(0, len(separated)-1, 1):
-            if separated[j] in name_guides:
+            if separated[j] in name_guides and survival == 1:
                 firstname_count = len(separated) - (j+1)
                 if firstname_count == 2: two_firstname += 1
                 elif firstname_count == 1: one_firstname += 1
@@ -167,55 +160,77 @@ def get_question_six(data):
     return two_firstname, one_firstname, morethantwo_firstname,
 
 def get_question_seven(data):
-    name_guides = ['Mrs.', 'Mrs', ]
+    survivor_sp = 0
+    name_guides = ['Mrs.']
     for i in range(1, len(data['Survived']) + 1, 1):
-        separated = str(list(data.loc[i:i, "Name"])[0]).split()
+        separated = str(list(data.loc[i:i, "Name"])[0]).split(" ")
         for j in range(0, len(separated) - 1, 1):
             if separated[j] in name_guides:
-                firstname_count = len(separated) - (j + 1)
+                if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1:
+                    survivor_sp += 1
 
+    return str(survivor_sp)
 
-
-# def main():
-#     question_one = get_question_one(titanic)
-#     # print(question_one)
-#
-#     question_two = get_question_two(titanic)
-#     print("Question #2 Answer \n"
-#           "There are a total of %s persons on the data set \n"
-#           "There are %s Men and %s Women on board\n"
-#           "of the %s on-board only %s survived\n"
-#           "%s of those are men, while the remaining %s are women\n"
-#           % (question_two[5], question_two[0], question_two[1], question_two[5],
-#              question_two[2], question_two[3], question_two[4]))
-#
-#     question_three = get_question_three(titanic)
-#     print("Question #3 Answer \n"
-#           "There are a total of %s persons on the data set\n"
-#           "The are %s persons on-board that had a sibling or a spouse with them\n"
-#           "%s persons with siblings survive the tragedy"
-#           % (question_three[0], question_three[3], question_three[1]))
-#
-#     question_four = get_question_four(titanic)
-#     print("Question #4 Answer \n"
-#           "There are a total of %s persons on the data set\n"
-#           "%s are from the first class, %s are from the second class and %s are from the third class\n"
-#           % (question_four[3], question_four[0], question_four[1], question_four[2]))
-#
-#     question_five = get_question_five(titanic)
-#     print("Question #5 Answer \n"
-#           "There are a total %s survivors on the data set\n"
-#           "%s are from S, %s are from Q, %s are from C.\n"
-#           "The ages will follow"
-#           % (question_five[3], question_five[0], question_five[1], question_five[2]))
-#
-#     question_six = get_question_six(titanic)
-#     print(question_six, "Answers on question 6")
 
 
 def main():
     out = cleaner(titanic)
-    print(out)
+
+    question_one = get_question_one(out)
+    # print(question_one)
+
+    question_two = get_question_two(out)
+    print("Question #2 Answer \n"
+          "There are a total of %s persons on the data set \n"
+          "There are %s Men and %s Women on board\n"
+          "of the %s on-board only %s survived\n"
+          "%s of those are men, while the remaining %s are women\n"
+          % (question_two[5], question_two[0], question_two[1], question_two[5],
+             question_two[2], question_two[3], question_two[4]))
+
+    question_three = get_question_three(out)
+    print("Question #3 Answer \n"
+          "There are a total of %s persons on the data set\n"
+          "The are %s persons on-board that had a sibling or a spouse with them\n"
+          "%s persons with siblings survive the tragedy\n"
+          % (question_three[0], question_three[3], question_three[1]))
+
+    question_four = get_question_four(out)
+    print("Question #4 Answer \n"
+          "There are a total of %s persons on the data set\n"
+          "%s are from the first class, %s are from the second class and %s are from the third class\n"
+          % (question_four[3], question_four[0], question_four[1], question_four[2]))
+
+    question_five = get_question_five(out)
+    print("Question #5 Answer \n"
+          "There are a total %s survivors on the data set\n"
+          "%s are from S, %s are from Q, %s are from C.\n"
+          "The ages will follow\n"
+          % (question_five[3], question_five[0], question_five[1], question_five[2]))
+
+    question_six = get_question_six(out)
+    print("Question #6 Answer\n"
+          "%s had 1 first name\n"
+          "%s had 2 first names\n"
+          "%s had more than 2 first names\n"
+          % (question_six[1], question_six[0], question_six[2]))
+    # print(question_six, "Answers on question 6\n")
+#return two_firstname, one_firstname, morethantwo_firstname,
+
+    question_seven = get_question_seven(out)
+    print("Question #7 Answer\n"
+          "%s Female that has husbands survived the tragedy"
+          % (question_seven[0]))
+    # print(questtion_seven, "Answers on Question 7\n")
+
+
+def main_plot():
+    #return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count, total_count,
+    question2 = get_question_two(titanic)
+
+    width = 0.5
+    fig, ax = plt.subplots(2, 3)
+    rects1 = ax.bar()
 
 if __name__ == '__main__':
     main()
