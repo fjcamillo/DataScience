@@ -18,9 +18,10 @@ style.use('ggplot')
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 def cleaner(data):
-    data.fillna(value=0, inplace=True)
+    mean = dict(titanic.groupby('Sex').mean()['Age'])
     data['Sex'].replace('female', 0, inplace=True)
     data['Sex'].replace('male', 1, inplace=True)
+
     return data
 
 
@@ -165,8 +166,6 @@ def get_question_five(data):
         else:
             pass
 
-    
-
     total_number_of_survivors = data['Survived'].sum()
 
     return froms, fromq, fromc, total_number_of_survivors, ageS, ageC, ageQ
@@ -186,21 +185,21 @@ def get_question_six(data):
         for j in range(0, len(separated)-1, 1):
             if separated[j] in name_guides:
                 firstname_count = len(separated) - (j+1)
-                if firstname_count == 2:
-                    two_firstname += 1
-                elif firstname_count == 1:
-                    one_firstname += 1
-                elif firstname_count > 2:
-                    morethantwo_firstname += 1
+                if firstname_count == 2: two_firstname += 1
+                elif firstname_count == 1: one_firstname += 1
+                elif firstname_count > 2: morethantwo_firstname += 1
 
     return two_firstname, one_firstname, morethantwo_firstname,
 
 def get_question_seven(data):
-    pass
+    name_guides = ['Mrs.', 'Mrs', ]
 
 
 
 def main():
+    question_one = get_question_one(titanic)
+    # print(question_one)
+
     question_two = get_question_two(titanic)
     print("Question #2 Answer \n"
           "There are a total of %s persons on the data set \n"
@@ -225,12 +224,13 @@ def main():
 
     question_five = get_question_five(titanic)
     print("Question #5 Answer \n"
-          "Ther are a total")
-    print(question_five[4], "Answers on question 5")
+          "There are a total %s survivors on the data set\n"
+          "%s are from S, %s are from Q, %s are from C.\n"
+          "The ages will follow"
+          % (question_five[3], question_five[0], question_five[1], question_five[2]))
 
     question_six = get_question_six(titanic)
     print(question_six, "Answers on question 6")
-    out = cleaner(titanic)
-    print(out)
+
 if __name__ == '__main__':
     main()
