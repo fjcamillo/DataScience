@@ -79,7 +79,9 @@ def get_question_four(data):
     thirdclass_total = 0
     secondclass_total = 0
     firstclass_total = 0
-
+    survived_first = 0
+    survived_second = 0
+    survived_third = 0
     # '#' Works on the Data, The PClass data is divided if the data is going to
     # '#' the third class, the second class, or the first class
     # '#' Also counts the number of persons that survived according to their economic status
@@ -88,17 +90,18 @@ def get_question_four(data):
         survived = list(data.loc[i:i, "Survived"])
         if int(actual_class[0]) == 1:
             firstclass_total += 1
+            survived_first += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         elif int(actual_class[0]) == 2:
             secondclass_total += 1
+            survived_second += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         elif int(actual_class[0]) == 3:
             thirdclass_total += 1
-        else:
-            pass
+            survived_third += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
 
-    # '#'Get the total number of survivors from the data set
+            # '#'Get the total number of survivors from the data set
     total_number_of_survivors = data['Survived'].sum()
 
-    return firstclass_total, secondclass_total, thirdclass_total, total_number_of_survivors
+    return firstclass_total, secondclass_total, thirdclass_total, total_number_of_survivors, survived_first, survived_second, survived_third
 
 
 def get_question_five(data):
@@ -108,6 +111,9 @@ def get_question_five(data):
     ageS = pd.DataFrame()
     ageC = pd.DataFrame()
     ageQ = pd.DataFrame()
+    survivedS = 0
+    survivedC = 0
+    survivedQ = 0
 
     for i in range(1, len(data['Age'])+1, 1):
         location = list(data.loc[i:i, "Embarked"])
@@ -118,25 +124,27 @@ def get_question_five(data):
                 str(actual_age[0]): 1
             }, index=['summation'])
             ageS = ageS.add(x, fill_value=0)
-
+            survivedS += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         elif str(location[0]).lower() == "c":
             fromc += 1
             y = pd.DataFrame({
                 str(actual_age[0]): 1
             }, index=['summation'])
             ageC = ageC.add(y, fill_value=0)
+            survivedC += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         elif str(location[0]).lower() == "q":
             fromq += 1
             z = pd.DataFrame({
                 str(actual_age[0]): 1
             }, index=['summation'])
             ageQ = ageQ.add(z, fill_value=0)
+            survivedQ += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         else:
             pass
 
     total_number_of_survivors = data['Survived'].sum()
 
-    return froms, fromq, fromc, total_number_of_survivors, ageS, ageC, ageQ
+    return froms, fromq, fromc, total_number_of_survivors, ageS, ageC, ageQ, survivedS, survivedQ, survivedC
 
 
 def get_question_six(data):
@@ -244,23 +252,55 @@ def main_plot():
     plt.bar([1], question2[3], label='Male', width=0.35)
     plt.bar([2], question2[4], label='Female', width=0.35)
     plt.legend()
-    plt.xLabel('bar number')
+    plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic Gender Analysis')
 
     # '#' Creates bar for question #3
     question3 = get_question_three(out)
     plt.subplot(222)
-    plt.bar()
+    plt.bar([1], question3[0], label='on-board with siblings', width=0.35)
+    plt.bar([2], question3[1], label='survivors with siblings', width=0.35)
+    plt.legend()
+    plt.xlabel('bar number')
+    plt.ylabel('bar height')
+    plt.title('Titanic Sibling Analysis')
 
-    # '#' Creates bar for question #4
+    # '#' Creates bar for question #4 456
     question4 = get_question_four(out)
+    plt.subplot(223)
+    plt.bar([1], question4[0], label='first Class', width=0.35)
+    plt.bar([2], question4[4], label='first Class Survivor', width=0.35)
 
-    # '#' Creates bar for question #5
+    plt.bar([3], question4[1], label='Second Class', width=0.35)
+    plt.bar([4], question4[5], label='Second Class Survivor', width=0.35)
+
+    plt.bar([5], question4[2], label='Third Class', width=0.35)
+    plt.bar([6], question4[6], label='Third Class Survivor', width=0.35)
+
+    plt.legend()
+    plt.xlabel('bar nnumber')
+    plt.ylabel('bar height')
+    plt.title('Titanic Economic Status Analysis')
+
+
+    # '#' Creates bar for question #5 012789
     question5 = get_question_five(out)
+    plt.subplot(224)
+    plt.bar([1], question5[0], label='From S', width=0.35)
+    plt.bar([2], question5[7], label='S Survivors', width=0.35)
+
+    plt.bar([3], question5[1], label='From C', width=0.35)
+    plt.bar([4], question5[8], label='C Survivors', width=0.35)
+
+    plt.bar([5], question5[2], label='From Q', width=0.35)
+    plt.bar([6], question5[9], label='Q Survivors', width=0.35)
+
 
     # '#' Creates bar for question #6
     question6 = get_question_six(out)
+
+    plt.show()
 
 if __name__ == '__main__':
     main_plot()
