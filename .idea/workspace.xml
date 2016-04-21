@@ -4,6 +4,7 @@
     <list default="true" id="c34978cd-308f-44ee-8fae-72b9f9bd75eb" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/../DataAnalysis/.~lock.titanic_data.csv#" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DataAnalysis/titanic_data.csv" afterPath="$PROJECT_DIR$/../DataAnalysis/titanic_data.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples.py" afterPath="$PROJECT_DIR$/samples.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/titanicAnalysis.py" afterPath="$PROJECT_DIR$/titanicAnalysis.py" />
     </list>
     <ignored path="Titanic.iws" />
@@ -18,9 +19,9 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Titanic$titanicAnalysis.coverage" NAME="titanicAnalysis Coverage Results" MODIFIED="1461209308561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Titanic$titanicAnalysis.coverage" NAME="titanicAnalysis Coverage Results" MODIFIED="1461210672107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Titanic$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1461058350593" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Titanic$samples.coverage" NAME="samples Coverage Results" MODIFIED="1461204715913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Titanic$samples.coverage" NAME="samples Coverage Results" MODIFIED="1461210667934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Titanic$Test__Site.coverage" NAME="Test: Site Coverage Results" MODIFIED="1461058339565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -35,25 +36,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="titanicAnalysis.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/titanicAnalysis.py">
+      <file leaf-file-name="samples.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/samples.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="295" column="44" selection-start-line="295" selection-start-column="44" selection-end-line="295" selection-end-column="44" />
+            <state relative-caret-position="234">
+              <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
               <folding>
-                <element signature="e#639#657#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="samples.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samples.py">
+      <file leaf-file-name="titanicAnalysis.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/titanicAnalysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+            <state relative-caret-position="92">
+              <caret line="257" column="14" selection-start-line="257" selection-start-column="14" selection-end-line="257" selection-end-column="14" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#639#657#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -689,8 +690,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/samples.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        <state relative-caret-position="234">
+          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -699,8 +700,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/titanicAnalysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="295" column="44" selection-start-line="295" selection-start-column="44" selection-end-line="295" selection-end-column="44" />
+        <state relative-caret-position="92">
+          <caret line="257" column="14" selection-start-line="257" selection-start-column="14" selection-end-line="257" selection-end-column="14" />
           <folding>
             <element signature="e#639#657#0" expanded="true" />
           </folding>

@@ -161,9 +161,12 @@ def get_question_six(data):
         for j in range(0, len(separated)-1, 1):
             if separated[j] in name_guides and survival == 1:
                 firstname_count = len(separated) - (j+1)
-                if firstname_count == 2: two_firstname += 1
-                elif firstname_count == 1: one_firstname += 1
-                elif firstname_count > 2: morethantwo_firstname += 1
+                if firstname_count == 2:
+                    two_firstname += 1
+                elif firstname_count == 1:
+                    one_firstname += 1
+                elif firstname_count > 2:
+                    morethantwo_firstname += 1
 
     return two_firstname, one_firstname, morethantwo_firstname,
 
@@ -248,9 +251,11 @@ def main_plot():
 
     # '#' Creates bar for question #2
     question2 = get_question_two(out)
-    plt.subplot(221)
+    plt.subplot(231)
     plt.bar([1], question2[3], label='Male', width=0.35)
-    plt.bar([2], question2[4], label='Female', width=0.35)
+    plt.bar([2], question2[0], label='Male Survived', width=0.35)
+    plt.bar([3], question2[4], label='Female', width=0.35)
+    plt.bar([4], question2[1], label='Female Survived', width=0.35)
     plt.legend()
     plt.xlabel('bar number')
     plt.ylabel('bar height')
@@ -258,7 +263,7 @@ def main_plot():
 
     # '#' Creates bar for question #3
     question3 = get_question_three(out)
-    plt.subplot(222)
+    plt.subplot(232)
     plt.bar([1], question3[0], label='on-board with siblings', width=0.35)
     plt.bar([2], question3[1], label='survivors with siblings', width=0.35)
     plt.legend()
@@ -268,7 +273,7 @@ def main_plot():
 
     # '#' Creates bar for question #4 456
     question4 = get_question_four(out)
-    plt.subplot(223)
+    plt.subplot(233)
     plt.bar([1], question4[0], label='first Class', width=0.35)
     plt.bar([2], question4[4], label='first Class Survivor', width=0.35)
 
@@ -286,7 +291,7 @@ def main_plot():
 
     # '#' Creates bar for question #5 012789
     question5 = get_question_five(out)
-    plt.subplot(224)
+    plt.subplot(234)
     plt.bar([1], question5[0], label='From S', width=0.35)
     plt.bar([2], question5[7], label='S Survivors', width=0.35)
 
@@ -296,9 +301,22 @@ def main_plot():
     plt.bar([5], question5[2], label='From Q', width=0.35)
     plt.bar([6], question5[9], label='Q Survivors', width=0.35)
 
+    plt.legend()
+    plt.xlabel('bar number')
+    plt.ylabel('bar height')
+    plt.title('Titanic Embarked Analysis')
+
 
     # '#' Creates bar for question #6
     question6 = get_question_six(out)
+    plt.subplot(235)
+    plt.bar([1], question6[1], label="One First Name", width=0.35)
+    plt.bar([2], question6[0], label="Two First Name", width=0.35)
+    plt.bar([3], question6[2], label="More than two First Name", width=0.35)
+    plt.legend()
+    plt.xlabel('bar number')
+    plt.ylabel('bar height')
+    plt.title('Titanic first name analysis')
 
     plt.show()
 
