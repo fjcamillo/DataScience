@@ -11,9 +11,10 @@ titanic = pd.DataFrame.from_csv('titanic_data.csv')
 # print(mean)
 
 
-x = titanic.groupby('Sex').describe()
-y = titanic['Survived'].count()+1
-print(y)
+a = 2
+
+a+=1 if a==3 else False
+print(a)
 
 # lst = ['francisc', 'jerhone', 'camillo', 'francisc jerhone']
 # x = [word for words in lst for word in words.split()]

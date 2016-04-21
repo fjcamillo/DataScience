@@ -19,21 +19,14 @@ titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 def cleaner(data):
     data.fillna(value=0, inplace=True)
-
-    # '#' Creates a dictionary that holds the mean for male and female
     mean = dict(titanic.groupby('Sex').mean()['Age'])
-
-    # '#'Replaces the female with 0, male with 1
     data['Sex'].replace('female', 0, inplace=True)
     data['Sex'].replace('male', 1, inplace=True)
-
-    # '#' Rounds the age using int() and converting fares to float
     for i in range(1, len(data['Age']), 1):
         d = int(float(list(data.loc[i:i, 'Age'])[0]))
         data.loc[i:i, 'Age'] = d
         f = float(list(data.loc[i:i, 'Fare'])[0])
         data.loc[i:i, 'Fare'] = f
-
     return data
 
 
@@ -54,7 +47,6 @@ def get_question_two(data):
         female_count += 1 if int(str(list(data.loc[i:i, 'Sex'])[0])) == 0 and int(
             str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
     return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count, total_count,
-
 
 def get_question_three(data):
     per_w_sibsp = 0
@@ -173,15 +165,18 @@ def get_question_six(data):
 def get_question_seven(data):
     survivor_sp = 0
     married = 0
+    withthem = 0
     name_guides = ['Mrs.', 'Mrs', "Mrs.", 'mrs.', 'mrs']
     for i in range(1, data['Survived'].count()+1, 1):
         separated = str(list(data.loc[i:i, "Name"])[0]).split(" ")
         for j in range(0, len(separated) - 1, 1):
             if separated[j] in name_guides:
-                survivor_sp += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
                 married += 1
+                if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1:
+                    survivor_sp += 1
+                    withthem += 1 if int(str(list(data.loc[i:i, 'Sibsp'])[0])) > 0 else 0
     output = survivor_sp
-    return output, married
+    return output, married, withthem
 
 
 
@@ -262,6 +257,7 @@ def main_plot():
     plt.ylabel('bar height')
     plt.title('Titanic Gender Analysis')
 
+
     # '#' Creates bar for question #3
     question3 = get_question_three(out)
     plt.subplot(232)
@@ -311,9 +307,9 @@ def main_plot():
     # '#' Creates bar for question #6
     question6 = get_question_six(out)
     plt.subplot(235)
-    plt.bar([1], question6[1], label="One First Name", width=0.35)
-    plt.bar([2], question6[0], label="Two First Name", width=0.35, color='r')
-    plt.bar([3], question6[2], label="More than two First Name", width=0.35, color='yellow')
+    plt.bar([1], question6[1], label="One 1st Name", width=0.35)
+    plt.bar([2], question6[0], label="Two 1st Name", width=0.35, color='r')
+    plt.bar([3], question6[2], label=">2 1st Name", width=0.35, color='yellow')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
@@ -324,11 +320,11 @@ def main_plot():
     plt.subplot(236)
     plt.bar([1], question7[1], label="Total", width=0.35, color='g')
     plt.bar([2], question7[0], label="Survivor", width=0.35)
+    plt.bar([3], question7[2], label="On-board", width=0.35, color='m')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic Married Analysis')
-
     plt.show()
 
 if __name__ == '__main__':
