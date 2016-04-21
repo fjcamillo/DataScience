@@ -49,8 +49,10 @@ def get_question_two(data):
     female_count = 0
     male_count = 0
     for i in range(1, len(data['Sex'])+1, 1):
-        male_count += 1 if int(list(data.loc[i:i, 'Sex'])[0]) == 1 else 0
-        female_count += 1 if int(list(data.loc[i:i, 'Sex'])[0]) == 0 else 0
+        male_count += 1 if int(str(list(data.loc[i:i, 'Sex'])[0])) == 1 and int(
+            str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
+        female_count += 1 if int(str(list(data.loc[i:i, 'Sex'])[0])) == 0 and int(
+            str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
     return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count, total_count,
 
 
@@ -170,9 +172,10 @@ def get_question_six(data):
 
     return two_firstname, one_firstname, morethantwo_firstname,
 
+
 def get_question_seven(data):
     survivor_sp = 0
-    name_guides = ['Mrs.']
+    name_guides = ['Mrs.', 'Mrs']
     for i in range(1, len(data['Survived']) + 1, 1):
         separated = str(list(data.loc[i:i, "Name"])[0]).split(" ")
         for j in range(0, len(separated) - 1, 1):
@@ -252,11 +255,11 @@ def main_plot():
     # '#' Creates bar for question #2
     question2 = get_question_two(out)
     plt.subplot(231)
-    plt.bar([1], question2[3], label='Male', width=0.35)
-    plt.bar([2], question2[0], label='Male Survived', width=0.35)
-    plt.bar([3], question2[4], label='Female', width=0.35)
-    plt.bar([4], question2[1], label='Female Survived', width=0.35)
-    plt.legend()
+    plt.bar([1], question2[0], label='Male', width=0.35)
+    plt.bar([2], question2[3], label='Male Survivor', width=0.35)
+    plt.bar([3], question2[1], label='Female', width=0.35)
+    plt.bar([4], question2[4], label='Female Survivor', width=0.35)
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic Gender Analysis')
@@ -264,9 +267,9 @@ def main_plot():
     # '#' Creates bar for question #3
     question3 = get_question_three(out)
     plt.subplot(232)
-    plt.bar([1], question3[0], label='on-board with siblings', width=0.35)
-    plt.bar([2], question3[1], label='survivors with siblings', width=0.35)
-    plt.legend()
+    plt.bar([1], question3[0], label='With Sibsp', width=0.35)
+    plt.bar([2], question3[1], label='Survivors-w-Sibsp', width=0.35)
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic Sibling Analysis')
@@ -274,16 +277,16 @@ def main_plot():
     # '#' Creates bar for question #4 456
     question4 = get_question_four(out)
     plt.subplot(233)
-    plt.bar([1], question4[0], label='first Class', width=0.35)
-    plt.bar([2], question4[4], label='first Class Survivor', width=0.35)
+    plt.bar([1], question4[0], label='1st-C', width=0.35)
+    plt.bar([2], question4[4], label='1st-C Survivor', width=0.35)
 
-    plt.bar([3], question4[1], label='Second Class', width=0.35)
-    plt.bar([4], question4[5], label='Second Class Survivor', width=0.35)
+    plt.bar([3], question4[1], label='2nd-C', width=0.35)
+    plt.bar([4], question4[5], label='2nd-C Survivor', width=0.35)
 
-    plt.bar([5], question4[2], label='Third Class', width=0.35)
-    plt.bar([6], question4[6], label='Third Class Survivor', width=0.35)
+    plt.bar([5], question4[2], label='3rd-C', width=0.35)
+    plt.bar([6], question4[6], label='3rd-C Survivor', width=0.35)
 
-    plt.legend()
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar nnumber')
     plt.ylabel('bar height')
     plt.title('Titanic Economic Status Analysis')
@@ -301,7 +304,7 @@ def main_plot():
     plt.bar([5], question5[2], label='From Q', width=0.35)
     plt.bar([6], question5[9], label='Q Survivors', width=0.35)
 
-    plt.legend()
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic Embarked Analysis')
@@ -313,7 +316,7 @@ def main_plot():
     plt.bar([1], question6[1], label="One First Name", width=0.35)
     plt.bar([2], question6[0], label="Two First Name", width=0.35)
     plt.bar([3], question6[2], label="More than two First Name", width=0.35)
-    plt.legend()
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic first name analysis')

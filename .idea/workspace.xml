@@ -4,7 +4,6 @@
     <list default="true" id="c34978cd-308f-44ee-8fae-72b9f9bd75eb" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/../DataAnalysis/.~lock.titanic_data.csv#" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DataAnalysis/titanic_data.csv" afterPath="$PROJECT_DIR$/../DataAnalysis/titanic_data.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples.py" afterPath="$PROJECT_DIR$/samples.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/titanicAnalysis.py" afterPath="$PROJECT_DIR$/titanicAnalysis.py" />
     </list>
     <ignored path="Titanic.iws" />
@@ -19,7 +18,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Titanic$titanicAnalysis.coverage" NAME="titanicAnalysis Coverage Results" MODIFIED="1461210672107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Titanic$titanicAnalysis.coverage" NAME="titanicAnalysis Coverage Results" MODIFIED="1461212446754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Titanic$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1461058350593" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Titanic$samples.coverage" NAME="samples Coverage Results" MODIFIED="1461210667934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Titanic$Test__Site.coverage" NAME="Test: Site Coverage Results" MODIFIED="1461058339565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -51,8 +50,8 @@
       <file leaf-file-name="titanicAnalysis.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/titanicAnalysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="257" column="14" selection-start-line="257" selection-start-column="14" selection-end-line="257" selection-end-column="14" />
+            <state relative-caret-position="659">
+              <caret line="301" column="63" selection-start-line="301" selection-start-column="63" selection-end-line="301" selection-end-column="63" />
               <folding>
                 <element signature="e#639#657#0" expanded="true" />
               </folding>
@@ -700,8 +699,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/titanicAnalysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="257" column="14" selection-start-line="257" selection-start-column="14" selection-end-line="257" selection-end-column="14" />
+        <state relative-caret-position="659">
+          <caret line="301" column="63" selection-start-line="301" selection-start-column="63" selection-end-line="301" selection-end-column="63" />
           <folding>
             <element signature="e#639#657#0" expanded="true" />
           </folding>
