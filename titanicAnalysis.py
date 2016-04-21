@@ -145,7 +145,7 @@ def get_question_five(data):
             pass
 
     total_number_of_survivors = data['Survived'].sum()
-
+    # ageS, ageC, ageQ = 0
     return froms, fromq, fromc, total_number_of_survivors, ageS, ageC, ageQ, survivedS, survivedQ, survivedC
 
 
@@ -163,27 +163,25 @@ def get_question_six(data):
         for j in range(0, len(separated)-1, 1):
             if separated[j] in name_guides and survival == 1:
                 firstname_count = len(separated) - (j+1)
-                if firstname_count == 2:
-                    two_firstname += 1
-                elif firstname_count == 1:
-                    one_firstname += 1
-                elif firstname_count > 2:
-                    morethantwo_firstname += 1
+                two_firstname += 1 if firstname_count == 2 else 0
+                one_firstname += 1 if firstname_count == 1 else 0
+                morethantwo_firstname += 1 if firstname_count > 2 else 0
 
-    return two_firstname, one_firstname, morethantwo_firstname,
+    return two_firstname, one_firstname, morethantwo_firstname
 
 
 def get_question_seven(data):
     survivor_sp = 0
-    name_guides = ['Mrs.', 'Mrs']
-    for i in range(1, len(data['Survived']) + 1, 1):
+    married = 0
+    name_guides = ['Mrs.', 'Mrs', "Mrs.", 'mrs.', 'mrs']
+    for i in range(1, data['Survived'].count()+1, 1):
         separated = str(list(data.loc[i:i, "Name"])[0]).split(" ")
         for j in range(0, len(separated) - 1, 1):
             if separated[j] in name_guides:
-                if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1:
-                    survivor_sp += 1
-
-    return str(survivor_sp)
+                survivor_sp += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
+                married += 1
+    output = survivor_sp
+    return output, married
 
 
 
@@ -320,6 +318,16 @@ def main_plot():
     plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic first name analysis')
+
+    # '#' Creates a bar for question #7
+    question7 = get_question_seven(out)
+    plt.subplot(236)
+    plt.bar([1], question7[1], label="Total", width=0.35)
+    plt.bar([2], question7[0], label="Survivor", width=0.35)
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+    plt.xlabel('bar number')
+    plt.ylabel('bar height')
+    plt.title('Titanic Married Analysis')
 
     plt.show()
 

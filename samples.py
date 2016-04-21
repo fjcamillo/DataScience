@@ -12,7 +12,8 @@ titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 
 x = titanic.groupby('Sex').describe()
-print(x)
+y = titanic['Survived'].count()+1
+print(y)
 
 # lst = ['francisc', 'jerhone', 'camillo', 'francisc jerhone']
 # x = [word for words in lst for word in words.split()]
