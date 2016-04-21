@@ -225,12 +225,42 @@ def main():
 
 
 def main_plot():
-    #return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count, total_count,
-    question2 = get_question_two(titanic)
 
-    width = 0.5
-    fig, ax = plt.subplots(2, 3)
-    rects1 = ax.bar()
+    # '#' Creates a bar graph for question # 2
+    out = cleaner(titanic)
+    # question2 = get_question_two(out)
+    # bars = [question2[3], question2[4]]
+    # plt.bar([1], bars[0], label='Male', width=0.35)
+    # plt.bar([2], bars[1], label='Female', width =0.35)
+    # plt.legend()
+    # plt.xlabel('bar number')
+    # plt.ylabel('bar height')
+    # plt.title('Titanic Gender Analysis')
+    # plt.show()
+
+    # '#' Creates bar for question #2
+    question2 = get_question_two(out)
+    plt.subplot(221)
+    plt.bar([1], question2[3], label='Male', width=0.35)
+    plt.bar([2], question2[4], label='Female', width=0.35)
+    plt.legend()
+    plt.xLabel('bar number')
+    plt.ylabel('bar height')
+    plt.title('Titanic Gender Analysis')
+
+    # '#' Creates bar for question #3
+    question3 = get_question_three(out)
+    plt.subplot(222)
+    plt.bar()
+
+    # '#' Creates bar for question #4
+    question4 = get_question_four(out)
+
+    # '#' Creates bar for question #5
+    question5 = get_question_five(out)
+
+    # '#' Creates bar for question #6
+    question6 = get_question_six(out)
 
 if __name__ == '__main__':
-    main()
+    main_plot()
