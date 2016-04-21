@@ -221,10 +221,6 @@ def main_plot():
     points = [0, 3, 1, 4]
     for i in range(0, len(labelMe), 1):
         plt.bar([i], question2[points[i]], label=str(labelMe[i]), width=0.5, color=('b' if i % 2 != 0 else 'grey'))
-    # plt.bar([1], question2[0], label='Male', width=0.5, color='grey')
-    # plt.bar([1.5], question2[3], label='Male Survivor', width=0.5)
-    # plt.bar([3], question2[1], label='Female', width=0.5, color='grey')
-    # plt.bar([3.5], question2[4], label='Female Survivor', width=0.5)
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
@@ -253,12 +249,16 @@ def main_plot():
     # '#' Creates bar for question #5 012789
     question5 = get_question_five(out)
     plt.subplot(234)
-    plt.bar([1], question5[0], label='From S', width=0.35, color='g')
-    plt.bar([2], question5[7], label='S Survivors', width=0.35)
-    plt.bar([3], question5[1], label='From C', width=0.35, color='g')
-    plt.bar([4], question5[8], label='C Survivors', width=0.35)
-    plt.bar([5], question5[2], label='From Q', width=0.35, color='g')
-    plt.bar([6], question5[9], label='Q Survivors', width=0.35)
+    fromCountry = ['From S', 'S Survivors', 'From C', 'C Survivors', 'From Q', 'Q Survivors']
+    nums = [0, 7, 1, 8, 2, 9]
+    for i in range(0, len(fromCountry), 1):
+        plt.bar([i], question5[nums[i]], label=str(fromCountry[i]), width=0.35, color=('g' if i % 2 != 0 else 'b'))
+    # plt.bar([1], question5[0], label='From S', width=0.35, color='g')
+    # plt.bar([2], question5[7], label='S Survivors', width=0.35)
+    # plt.bar([3], question5[1], label='From C', width=0.35, color='g')
+    # plt.bar([4], question5[8], label='C Survivors', width=0.35)
+    # plt.bar([5], question5[2], label='From Q', width=0.35, color='g')
+    # plt.bar([6], question5[9], label='Q Survivors', width=0.35)
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
