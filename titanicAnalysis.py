@@ -48,37 +48,29 @@ def get_question_two(data):
             str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
     return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count, total_count,
 
+
 def get_question_three(data):
     per_w_sibsp = 0
     survivors_w_sibsp = 0
-
-    # '#' Works on the Data, counts the person with siblings and also counts
-    # '#' the surviving persons that has a sibling on board
     for i in range(1, len(data['Sibsp'])+1, 1):
         test_sibsp = list(data.loc[i:i, "Sibsp"])
         survived = list(data.loc[i:i, "Survived"])
         if int(str(test_sibsp[0])) > 0:
             per_w_sibsp += 1
             survivors_w_sibsp += 1 if survived[0] == 1 else 0
-
     total_number_of_survivors = data['Survived'].sum()
     total_sibsps = data['Sibsp'].sum()
-
     return per_w_sibsp, survivors_w_sibsp, total_sibsps, total_number_of_survivors
 
 
 def get_question_four(data):
 
-    # '#' Stores the PClass data according to the economic status of the person
     thirdclass_total = 0
     secondclass_total = 0
     firstclass_total = 0
     survived_first = 0
     survived_second = 0
     survived_third = 0
-    # '#' Works on the Data, The PClass data is divided if the data is going to
-    # '#' the third class, the second class, or the first class
-    # '#' Also counts the number of persons that survived according to their economic status
     for i in range(1, len(data['Pclass']) + 1, 1):
         actual_class = list(data.loc[i:i, "Pclass"])
         survived = list(data.loc[i:i, "Survived"])
@@ -91,8 +83,6 @@ def get_question_four(data):
         elif int(actual_class[0]) == 3:
             thirdclass_total += 1
             survived_third += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
-
-            # '#'Get the total number of survivors from the data set
     total_number_of_survivors = data['Survived'].sum()
 
     return firstclass_total, secondclass_total, thirdclass_total, total_number_of_survivors, survived_first, survived_second, survived_third
@@ -114,23 +104,17 @@ def get_question_five(data):
         actual_age = list(data.loc[i:i, "Age"])
         if str(location[0]).lower() == "s":
             froms += 1
-            x = pd.DataFrame({
-                str(actual_age[0]): 1
-            }, index=['summation'])
+            x = pd.DataFrame({str(actual_age[0]): 1}, index=['summation'])
             ageS = ageS.add(x, fill_value=0)
             survivedS += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         elif str(location[0]).lower() == "c":
             fromc += 1
-            y = pd.DataFrame({
-                str(actual_age[0]): 1
-            }, index=['summation'])
+            y = pd.DataFrame({str(actual_age[0]): 1}, index=['summation'])
             ageC = ageC.add(y, fill_value=0)
             survivedC += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         elif str(location[0]).lower() == "q":
             fromq += 1
-            z = pd.DataFrame({
-                str(actual_age[0]): 1
-            }, index=['summation'])
+            z = pd.DataFrame({str(actual_age[0]): 1}, index=['summation'])
             ageQ = ageQ.add(z, fill_value=0)
             survivedQ += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         else:
@@ -147,7 +131,6 @@ def get_question_six(data):
                    'Miss', 'Ms', 'Mr', 'Rev', 'Mme', 'Master', 'Sir']
     two_firstname = 0
     one_firstname = 0
-    # checker = 0
     morethantwo_firstname = 0
     for i in range(1, len(data['Survived'])+1, 1):
         separated = str(list(data.loc[i:i, "Name"])[0]).split(" ")
@@ -221,8 +204,6 @@ def main():
           "%s had 2 first names\n"
           "%s had more than 2 first names\n"
           % (question_six[1], question_six[0], question_six[2]))
-    # print(question_six, "Answers on question 6\n")
-#return two_firstname, one_firstname, morethantwo_firstname,
 
     question_seven = get_question_seven(out)
     print("Question #7 Answer\n"
@@ -233,36 +214,27 @@ def main():
 
 def main_plot():
 
-    # '#' Creates a bar graph for question # 2
     out = cleaner(titanic)
-    # question2 = get_question_two(out)
-    # bars = [question2[3], question2[4]]
-    # plt.bar([1], bars[0], label='Male', width=0.35)
-    # plt.bar([2], bars[1], label='Female', width =0.35)
-    # plt.legend()
-    # plt.xlabel('bar number')
-    # plt.ylabel('bar height')
-    # plt.title('Titanic Gender Analysis')
-    # plt.show()
-
-    # '#' Creates bar for question #2
     question2 = get_question_two(out)
     plt.subplot(231)
-    plt.bar([1], question2[0], label='Male', width=0.35, color='c')
-    plt.bar([2], question2[3], label='Male Survivor', width=0.35)
-    plt.bar([3], question2[1], label='Female', width=0.35, color='c')
-    plt.bar([4], question2[4], label='Female Survivor', width=0.35)
+    labelMe = ['Male', 'Male Survivor', 'Female', 'Female Survivor']
+    points = [0, 3, 1, 4]
+    for i in range(0, len(labelMe), 1):
+        plt.bar([i], question2[points[i]], label=str(labelMe[i]), width=0.5, color=('b' if i % 2 != 0 else 'grey'))
+    # plt.bar([1], question2[0], label='Male', width=0.5, color='grey')
+    # plt.bar([1.5], question2[3], label='Male Survivor', width=0.5)
+    # plt.bar([3], question2[1], label='Female', width=0.5, color='grey')
+    # plt.bar([3.5], question2[4], label='Female Survivor', width=0.5)
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic Gender Analysis')
 
-
     # '#' Creates bar for question #3
     question3 = get_question_three(out)
     plt.subplot(232)
-    plt.bar([1], question3[0], label='With Sibsp', width=0.35, color='m')
-    plt.bar([2], question3[1], label='Survivors-w-Sibsp', width=0.35)
+    plt.bar([1], question3[0], label='With Sibsp', width=0.35, color='g')
+    plt.bar([2], question3[1], label='Survivors-w-Sibsp', width=0.35, color='b')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
@@ -271,38 +243,26 @@ def main_plot():
     # '#' Creates bar for question #4 456
     question4 = get_question_four(out)
     plt.subplot(233)
-    plt.bar([1], question4[0], label='1st-C', width=0.35, color='g')
-    plt.bar([2], question4[4], label='1st-C Survivor', width=0.35)
+    plt.pie(question4[0:3], labels=['1st-C', '2nd-C', '3rd-C'], colors=['c', 'm', 'b'],
+            shadow=True, autopct='%1.1f%%')
 
-    plt.bar([3], question4[1], label='2nd-C', width=0.35, color='g')
-    plt.bar([4], question4[5], label='2nd-C Survivor', width=0.35)
-
-    plt.bar([5], question4[2], label='3rd-C', width=0.35, color='g')
-    plt.bar([6], question4[6], label='3rd-C Survivor', width=0.35)
-
-    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-    plt.xlabel('bar nnumber')
-    plt.ylabel('bar height')
+    # plt.pie(question4[4:7], labels=['1Sur', '2Sur', '3Sur'], colors=['c', 'm', 'b'],
+    #         shadow=True, autopct='%1.1f%%')
     plt.title('Titanic Economic Status Analysis')
-
 
     # '#' Creates bar for question #5 012789
     question5 = get_question_five(out)
     plt.subplot(234)
     plt.bar([1], question5[0], label='From S', width=0.35, color='g')
     plt.bar([2], question5[7], label='S Survivors', width=0.35)
-
     plt.bar([3], question5[1], label='From C', width=0.35, color='g')
     plt.bar([4], question5[8], label='C Survivors', width=0.35)
-
     plt.bar([5], question5[2], label='From Q', width=0.35, color='g')
     plt.bar([6], question5[9], label='Q Survivors', width=0.35)
-
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic Embarked Analysis')
-
 
     # '#' Creates bar for question #6
     question6 = get_question_six(out)
