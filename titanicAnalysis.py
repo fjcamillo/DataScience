@@ -253,9 +253,9 @@ def main_plot():
     # '#' Creates bar for question #2
     question2 = get_question_two(out)
     plt.subplot(231)
-    plt.bar([1], question2[0], label='Male', width=0.35)
+    plt.bar([1], question2[0], label='Male', width=0.35, color='c')
     plt.bar([2], question2[3], label='Male Survivor', width=0.35)
-    plt.bar([3], question2[1], label='Female', width=0.35)
+    plt.bar([3], question2[1], label='Female', width=0.35, color='c')
     plt.bar([4], question2[4], label='Female Survivor', width=0.35)
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
@@ -265,7 +265,7 @@ def main_plot():
     # '#' Creates bar for question #3
     question3 = get_question_three(out)
     plt.subplot(232)
-    plt.bar([1], question3[0], label='With Sibsp', width=0.35)
+    plt.bar([1], question3[0], label='With Sibsp', width=0.35, color='m')
     plt.bar([2], question3[1], label='Survivors-w-Sibsp', width=0.35)
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
@@ -275,13 +275,13 @@ def main_plot():
     # '#' Creates bar for question #4 456
     question4 = get_question_four(out)
     plt.subplot(233)
-    plt.bar([1], question4[0], label='1st-C', width=0.35)
+    plt.bar([1], question4[0], label='1st-C', width=0.35, color='g')
     plt.bar([2], question4[4], label='1st-C Survivor', width=0.35)
 
-    plt.bar([3], question4[1], label='2nd-C', width=0.35)
+    plt.bar([3], question4[1], label='2nd-C', width=0.35, color='g')
     plt.bar([4], question4[5], label='2nd-C Survivor', width=0.35)
 
-    plt.bar([5], question4[2], label='3rd-C', width=0.35)
+    plt.bar([5], question4[2], label='3rd-C', width=0.35, color='g')
     plt.bar([6], question4[6], label='3rd-C Survivor', width=0.35)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
@@ -293,13 +293,13 @@ def main_plot():
     # '#' Creates bar for question #5 012789
     question5 = get_question_five(out)
     plt.subplot(234)
-    plt.bar([1], question5[0], label='From S', width=0.35)
+    plt.bar([1], question5[0], label='From S', width=0.35, color='g')
     plt.bar([2], question5[7], label='S Survivors', width=0.35)
 
-    plt.bar([3], question5[1], label='From C', width=0.35)
+    plt.bar([3], question5[1], label='From C', width=0.35, color='g')
     plt.bar([4], question5[8], label='C Survivors', width=0.35)
 
-    plt.bar([5], question5[2], label='From Q', width=0.35)
+    plt.bar([5], question5[2], label='From Q', width=0.35, color='g')
     plt.bar([6], question5[9], label='Q Survivors', width=0.35)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
@@ -312,8 +312,8 @@ def main_plot():
     question6 = get_question_six(out)
     plt.subplot(235)
     plt.bar([1], question6[1], label="One First Name", width=0.35)
-    plt.bar([2], question6[0], label="Two First Name", width=0.35)
-    plt.bar([3], question6[2], label="More than two First Name", width=0.35)
+    plt.bar([2], question6[0], label="Two First Name", width=0.35, color='r')
+    plt.bar([3], question6[2], label="More than two First Name", width=0.35, color='yellow')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
@@ -322,7 +322,7 @@ def main_plot():
     # '#' Creates a bar for question #7
     question7 = get_question_seven(out)
     plt.subplot(236)
-    plt.bar([1], question7[1], label="Total", width=0.35)
+    plt.bar([1], question7[1], label="Total", width=0.35, color='g')
     plt.bar([2], question7[0], label="Survivor", width=0.35)
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
