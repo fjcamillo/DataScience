@@ -1,7 +1,7 @@
 """
 This final project shall be composed of the analysis of the titanic data set
 questions created:
-1. What factors made people more likely to survive?
+1. What factors made people more likely to survive? --Given by the site
 2. Does gender affect the survival of the on-board passengers and crew?
 3. Does having a sibling or spouse on board affects the survival of the passenger?
 4. Does economic status affects the survival of the person
@@ -10,60 +10,78 @@ questions created:
 7. Does having a wife or husband (off board or on board) affect the chance of survival?
 """
 
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import style
 style.use('ggplot')
-from matplotlib.widgets import Slider
+
+# '#' Titanic_data.csv to Pandas Data Frame
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
+# '#' Takes in the titanic dataframe then cleans it
 def cleaner(data):
     data.fillna(value=0, inplace=True)
-    mean = dict(titanic.groupby('Sex').mean()['Age'])
+
+    # '#' female are changed to 0, male are changed to 1
     data['Sex'].replace('female', 0, inplace=True)
     data['Sex'].replace('male', 1, inplace=True)
+
+    # '#' Converts all floats and ints to their correct data type
     for i in range(1, len(data['Age']), 1):
         d = int(float(list(data.loc[i:i, 'Age'])[0]))
         data.loc[i:i, 'Age'] = d
         f = float(list(data.loc[i:i, 'Fare'])[0])
         data.loc[i:i, 'Fare'] = f
+
     return data
 
-
-def get_question_one(data):
-    pass
-
-
+# '#' Answers Question #2
+# '#' Adds all the male and female that survived
 def get_question_two(data):
+
+    # '#' Sums up all 1 on the 'Sex' Column
     number_of_male_ob = data['Sex'].sum()
+
+    # '#' Subtracts the total count to the number_of_male_ob
     number_of_female_ob = data['Sex'].count() - int(number_of_male_ob)
+
+    # '#' Sums up all 1 on the 'Survivor' Column
     total_number_of_survivors = data['Survived'].sum()
     total_count = data['Sex'].count()
     female_count = 0
     male_count = 0
+
+    # '#' Counts the male survivor and the female survivor
     for i in range(1, len(data['Sex'])+1, 1):
         male_count += 1 if int(str(list(data.loc[i:i, 'Sex'])[0])) == 1 and int(
             str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         female_count += 1 if int(str(list(data.loc[i:i, 'Sex'])[0])) == 0 and int(
             str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
+
     return number_of_male_ob, number_of_female_ob, total_number_of_survivors, male_count, female_count, total_count,
 
 
+# '#' Answers Question #3
 def get_question_three(data):
     per_w_sibsp = 0
     survivors_w_sibsp = 0
+
+    # '#' Counts the persons that survives that has their siblings or spouse with them
     for i in range(1, len(data['Sibsp'])+1, 1):
         test_sibsp = list(data.loc[i:i, "Sibsp"])
         survived = list(data.loc[i:i, "Survived"])
         if int(str(test_sibsp[0])) > 0:
             per_w_sibsp += 1
             survivors_w_sibsp += 1 if survived[0] == 1 else 0
+
     total_number_of_survivors = data['Survived'].sum()
     total_sibsps = data['Sibsp'].sum()
+
     return per_w_sibsp, survivors_w_sibsp, total_sibsps, total_number_of_survivors
 
 
+# '#' Answers Question #4
+# '#' in each status
 def get_question_four(data):
     thirdclass_total = 0
     secondclass_total = 0
@@ -71,10 +89,16 @@ def get_question_four(data):
     survived_first = 0
     survived_second = 0
     survived_third = 0
+
+    # '#' Classifies all of the survivors according to their economic status then counts how many survives
     for i in range(1, len(data['Pclass']) + 1, 1):
+
+        # '#' stores a singe itemed list to actual_class
         actual_class = list(data.loc[i:i, "Pclass"])
         if int(actual_class[0]) == 1:
             firstclass_total += 1
+
+            # '#' if the current person survive(get data from 'Survived column', add a 1 to survived_first
             survived_first += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
         elif int(actual_class[0]) == 2:
             secondclass_total += 1
@@ -82,8 +106,13 @@ def get_question_four(data):
         elif int(actual_class[0]) == 3:
             thirdclass_total += 1
             survived_third += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
+
     total_number_of_survivors = data['Survived'].sum()
+
     return firstclass_total, secondclass_total, thirdclass_total, total_number_of_survivors, survived_first, survived_second, survived_third
+
+
+# '#' Answers Question #5
 
 
 def get_question_five(data):
@@ -96,6 +125,9 @@ def get_question_five(data):
     survivedS = 0
     survivedC = 0
     survivedQ = 0
+
+    # '#' Counts the number of person that came from S, Q, C and then counts the number of survivors from each location
+    # '#' Then counts the ages of the person on each location --> Not included on the final graph
     for i in range(1, len(data['Age'])+1, 1):
         location = list(data.loc[i:i, "Embarked"])
         actual_age = list(data.loc[i:i, "Age"])
@@ -121,6 +153,7 @@ def get_question_five(data):
     return froms, fromq, fromc, total_number_of_survivors, ageS, ageC, ageQ, survivedS, survivedQ, survivedC
 
 
+# '#' Answers Question #6
 def get_question_six(data):
     name_guides = ['Mr.', 'Ms.', 'Miss.', 'Mister.', 'Mrs.', 'Don.',
                    'Master.', 'Rev.', 'Dr.', 'Mme.', 'Major.', 'Sir.',
@@ -128,6 +161,8 @@ def get_question_six(data):
     two_firstname = 0
     one_firstname = 0
     morethantwo_firstname = 0
+
+    # '#' Counts the number of persons with 1 first name, 2 first names, and more than 2 first names
     for i in range(1, len(data['Survived'])+1, 1):
         separated = str(list(data.loc[i:i, "Name"])[0]).split(" ")
         survival = int(list(data.loc[i:i, 'Survived'])[0])
@@ -137,14 +172,19 @@ def get_question_six(data):
                 two_firstname += 1 if firstname_count == 2 else 0
                 one_firstname += 1 if firstname_count == 1 else 0
                 morethantwo_firstname += 1 if firstname_count > 2 else 0
+
     return two_firstname, one_firstname, morethantwo_firstname
 
 
+# '#' Answers Question #7
 def get_question_seven(data):
     survivor_sp = 0
     married = 0
     withthem = 0
     name_guides = ['Mrs.', 'Mrs', "Mrs.", 'mrs.', 'mrs']
+
+    # '#' Counts the number of married females on the ship then classfies it they survives
+    # '#' Also took into account if the females husband is on the ship as well
     for i in range(1, data['Survived'].count()+1, 1):
         separated = str(list(data.loc[i:i, "Name"])[0]).split(" ")
         for j in range(0, len(separated) - 1, 1):
@@ -153,12 +193,13 @@ def get_question_seven(data):
                 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1:
                     survivor_sp += 1
                     withthem += 1 if int(str(list(data.loc[i:i, 'Sibsp'])[0])) > 0 else 0
+
     output = survivor_sp
     return output, married, withthem
 
 
+# '#' Plots
 def main_plot():
-
     out = cleaner(titanic)
     question2 = get_question_two(out)
     plt.subplot(231)
@@ -186,7 +227,7 @@ def main_plot():
     plt.xlim(0, 4)
     plt.title('Titanic Sibling Analysis')
 
-    # '#' Creates bar for question #4 456
+    # '#' Creates pie for question #4
     question4 = get_question_four(out)
     plt.subplot(233)
     plt.autoscale(True)
@@ -194,7 +235,7 @@ def main_plot():
             shadow=True, autopct='%1.1f%%')
     plt.title('Titanic Economic Status Analysis')
 
-    # '#' Creates bar for question #5 012789
+    # '#' Creates bar for question #5
     question5 = get_question_five(out)
     plt.subplot(234)
     plt.autoscale(True)
@@ -228,7 +269,7 @@ def main_plot():
     plt.autoscale(True)
     plt.bar([1], question7[1], label="Total", width=0.35, color='#426BBF')
     plt.bar([2], question7[0], label="Survivor", width=0.35, color='#0072BF')
-    plt.bar([3], question7[2], label="On-board", width=0.35, color='#004473')
+    plt.bar([3], question7[2], label="Spouse OB", width=0.35, color='#004473')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
