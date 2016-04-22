@@ -73,7 +73,6 @@ def get_question_four(data):
     survived_third = 0
     for i in range(1, len(data['Pclass']) + 1, 1):
         actual_class = list(data.loc[i:i, "Pclass"])
-        survived = list(data.loc[i:i, "Survived"])
         if int(actual_class[0]) == 1:
             firstclass_total += 1
             survived_first += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
@@ -162,56 +161,6 @@ def get_question_seven(data):
     return output, married, withthem
 
 
-
-def main():
-    out = cleaner(titanic)
-
-    question_one = get_question_one(out)
-    # print(question_one)
-
-    question_two = get_question_two(out)
-    print("Question #2 Answer \n"
-          "There are a total of %s persons on the data set \n"
-          "There are %s Men and %s Women on board\n"
-          "of the %s on-board only %s survived\n"
-          "%s of those are men, while the remaining %s are women\n"
-          % (question_two[5], question_two[0], question_two[1], question_two[5],
-             question_two[2], question_two[3], question_two[4]))
-
-    question_three = get_question_three(out)
-    print("Question #3 Answer \n"
-          "There are a total of %s persons on the data set\n"
-          "The are %s persons on-board that had a sibling or a spouse with them\n"
-          "%s persons with siblings survive the tragedy\n"
-          % (question_three[0], question_three[3], question_three[1]))
-
-    question_four = get_question_four(out)
-    print("Question #4 Answer \n"
-          "There are a total of %s persons on the data set\n"
-          "%s are from the first class, %s are from the second class and %s are from the third class\n"
-          % (question_four[3], question_four[0], question_four[1], question_four[2]))
-
-    question_five = get_question_five(out)
-    print("Question #5 Answer \n"
-          "There are a total %s survivors on the data set\n"
-          "%s are from S, %s are from Q, %s are from C.\n"
-          "The ages will follow\n"
-          % (question_five[3], question_five[0], question_five[1], question_five[2]))
-
-    question_six = get_question_six(out)
-    print("Question #6 Answer\n"
-          "%s had 1 first name\n"
-          "%s had 2 first names\n"
-          "%s had more than 2 first names\n"
-          % (question_six[1], question_six[0], question_six[2]))
-
-    question_seven = get_question_seven(out)
-    print("Question #7 Answer\n"
-          "%s Female that has husbands survived the tragedy"
-          % (question_seven[0]))
-    # print(questtion_seven, "Answers on Question 7\n")
-
-
 def main_plot():
 
     out = cleaner(titanic)
@@ -229,8 +178,8 @@ def main_plot():
     # '#' Creates bar for question #3
     question3 = get_question_three(out)
     plt.subplot(232)
-    plt.bar([1], question3[0], label='With Sibsp', width=0.35, color='g')
-    plt.bar([2], question3[1], label='Survivors-w-Sibsp', width=0.35, color='b')
+    plt.bar([1], question3[0], label='With Sibsp', width=0.35, color='#0072BF')
+    plt.bar([2], question3[1], label='Survivors-w-Sibsp', width=0.35, color='#004473')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
@@ -253,12 +202,6 @@ def main_plot():
     nums = [0, 7, 1, 8, 2, 9]
     for i in range(0, len(fromCountry), 1):
         plt.bar([i], question5[nums[i]], label=str(fromCountry[i]), width=0.35, color=('g' if i % 2 != 0 else 'b'))
-    # plt.bar([1], question5[0], label='From S', width=0.35, color='g')
-    # plt.bar([2], question5[7], label='S Survivors', width=0.35)
-    # plt.bar([3], question5[1], label='From C', width=0.35, color='g')
-    # plt.bar([4], question5[8], label='C Survivors', width=0.35)
-    # plt.bar([5], question5[2], label='From Q', width=0.35, color='g')
-    # plt.bar([6], question5[9], label='Q Survivors', width=0.35)
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
