@@ -64,7 +64,6 @@ def get_question_three(data):
 
 
 def get_question_four(data):
-
     thirdclass_total = 0
     secondclass_total = 0
     firstclass_total = 0
@@ -120,7 +119,6 @@ def get_question_five(data):
             pass
 
     total_number_of_survivors = data['Survived'].sum()
-    # ageS, ageC, ageQ = 0
     return froms, fromq, fromc, total_number_of_survivors, ageS, ageC, ageQ, survivedS, survivedQ, survivedC
 
 
@@ -140,7 +138,6 @@ def get_question_six(data):
                 two_firstname += 1 if firstname_count == 2 else 0
                 one_firstname += 1 if firstname_count == 1 else 0
                 morethantwo_firstname += 1 if firstname_count > 2 else 0
-
     return two_firstname, one_firstname, morethantwo_firstname
 
 
@@ -168,11 +165,13 @@ def main_plot():
     plt.subplot(231)
     labelMe = ['Male', 'Male Survivor', 'Female', 'Female Survivor']
     points = [0, 3, 1, 4]
-    for i in range(0, len(labelMe), 1):
-        plt.bar([i], question2[points[i]], label=str(labelMe[i]), width=0.5, color=('b' if i % 2 != 0 else 'grey'))
+    for i in range(1, len(labelMe)+1, 1):
+        plt.bar([i], question2[points[i]], label=str(labelMe[i]),
+                width=0.5, color=('#1C6972' if i % 2 != 0 else 'grey'))
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
+    plt.xlim(0, 5)
     plt.title('Titanic Gender Analysis')
 
     # '#' Creates bar for question #3
@@ -188,7 +187,7 @@ def main_plot():
     # '#' Creates bar for question #4 456
     question4 = get_question_four(out)
     plt.subplot(233)
-    plt.pie(question4[0:3], labels=['1st-C', '2nd-C', '3rd-C'], colors=['c', 'm', 'b'],
+    plt.pie(question4[0:3], labels=['1st-C', '2nd-C', '3rd-C'], colors=['#2BA4B2', '#1C6972', '#3BDEF2'],
             shadow=True, autopct='%1.1f%%')
 
     # plt.pie(question4[4:7], labels=['1Sur', '2Sur', '3Sur'], colors=['c', 'm', 'b'],
@@ -201,7 +200,8 @@ def main_plot():
     fromCountry = ['From S', 'S Survivors', 'From C', 'C Survivors', 'From Q', 'Q Survivors']
     nums = [0, 7, 1, 8, 2, 9]
     for i in range(0, len(fromCountry), 1):
-        plt.bar([i], question5[nums[i]], label=str(fromCountry[i]), width=0.35, color=('g' if i % 2 != 0 else 'b'))
+        plt.bar([i], question5[nums[i]], label=str(fromCountry[i]),
+                width=0.35, color=('#426BBF' if i % 2 != 0 else 'grey'))
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
@@ -210,9 +210,9 @@ def main_plot():
     # '#' Creates bar for question #6
     question6 = get_question_six(out)
     plt.subplot(235)
-    plt.bar([1], question6[1], label="One 1st Name", width=0.35)
-    plt.bar([2], question6[0], label="Two 1st Name", width=0.35, color='r')
-    plt.bar([3], question6[2], label=">2 1st Name", width=0.35, color='yellow')
+    plt.bar([1], question6[1], label="One 1st Name", width=0.35, color='#426BBF')
+    plt.bar([2], question6[0], label="Two 1st Name", width=0.35, color='#0072BF')
+    plt.bar([3], question6[2], label=">2 1st Name", width=0.35, color='#004473')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
@@ -221,13 +221,15 @@ def main_plot():
     # '#' Creates a bar for question #7
     question7 = get_question_seven(out)
     plt.subplot(236)
-    plt.bar([1], question7[1], label="Total", width=0.35, color='g')
-    plt.bar([2], question7[0], label="Survivor", width=0.35)
-    plt.bar([3], question7[2], label="On-board", width=0.35, color='m')
+    plt.bar([1], question7[1], label="Total", width=0.35, color='#426BBF')
+    plt.bar([2], question7[0], label="Survivor", width=0.35, color='#0072BF')
+    plt.bar([3], question7[2], label="On-board", width=0.35, color='#004473')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
     plt.title('Titanic Married Analysis')
+
+    #Shows the complete plot
     plt.show()
 
 if __name__ == '__main__':

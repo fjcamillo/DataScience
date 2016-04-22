@@ -11,9 +11,9 @@ titanic = pd.DataFrame.from_csv('titanic_data.csv')
 # print(mean)
 
 
-a = 2
-
-a+=1 if a==3 else False
+a = 4
+b = 2
+a += 1 if a == 3 else b if a == 4 else a+3
 print(a)
 
 # lst = ['francisc', 'jerhone', 'camillo', 'francisc jerhone']
