@@ -15,6 +15,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import style
 style.use('ggplot')
+from matplotlib.widgets import Slider
 titanic = pd.DataFrame.from_csv('titanic_data.csv')
 
 def cleaner(data):
@@ -82,7 +83,6 @@ def get_question_four(data):
             thirdclass_total += 1
             survived_third += 1 if int(str(list(data.loc[i:i, 'Survived'])[0])) == 1 else 0
     total_number_of_survivors = data['Survived'].sum()
-
     return firstclass_total, secondclass_total, thirdclass_total, total_number_of_survivors, survived_first, survived_second, survived_third
 
 
@@ -96,7 +96,6 @@ def get_question_five(data):
     survivedS = 0
     survivedC = 0
     survivedQ = 0
-
     for i in range(1, len(data['Age'])+1, 1):
         location = list(data.loc[i:i, "Embarked"])
         actual_age = list(data.loc[i:i, "Age"])
@@ -163,10 +162,11 @@ def main_plot():
     out = cleaner(titanic)
     question2 = get_question_two(out)
     plt.subplot(231)
+    plt.autoscale(True)
     labelMe = ['Male', 'Male Survivor', 'Female', 'Female Survivor']
     points = [0, 3, 1, 4]
-    for i in range(1, len(labelMe)+1, 1):
-        plt.bar([i], question2[points[i]], label=str(labelMe[i]),
+    for i in range(0, len(labelMe), 1):
+        plt.bar([i+1], question2[points[i]], label=str(labelMe[i]),
                 width=0.5, color=('#1C6972' if i % 2 != 0 else 'grey'))
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
@@ -177,59 +177,65 @@ def main_plot():
     # '#' Creates bar for question #3
     question3 = get_question_three(out)
     plt.subplot(232)
+    plt.autoscale(True)
     plt.bar([1], question3[0], label='With Sibsp', width=0.35, color='#0072BF')
     plt.bar([2], question3[1], label='Survivors-w-Sibsp', width=0.35, color='#004473')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
+    plt.xlim(0, 4)
     plt.title('Titanic Sibling Analysis')
 
     # '#' Creates bar for question #4 456
     question4 = get_question_four(out)
     plt.subplot(233)
-    plt.pie(question4[0:3], labels=['1st-C', '2nd-C', '3rd-C'], colors=['#2BA4B2', '#1C6972', '#3BDEF2'],
+    plt.autoscale(True)
+    plt.pie(question4[4:7], labels=['1st-C', '2nd-C', '3rd-C'], colors=['#2BA4B2', '#1C6972', '#3BDEF2'],
             shadow=True, autopct='%1.1f%%')
-
-    # plt.pie(question4[4:7], labels=['1Sur', '2Sur', '3Sur'], colors=['c', 'm', 'b'],
-    #         shadow=True, autopct='%1.1f%%')
     plt.title('Titanic Economic Status Analysis')
 
     # '#' Creates bar for question #5 012789
     question5 = get_question_five(out)
     plt.subplot(234)
+    plt.autoscale(True)
     fromCountry = ['From S', 'S Survivors', 'From C', 'C Survivors', 'From Q', 'Q Survivors']
     nums = [0, 7, 1, 8, 2, 9]
     for i in range(0, len(fromCountry), 1):
-        plt.bar([i], question5[nums[i]], label=str(fromCountry[i]),
+        plt.bar([i+1], question5[nums[i]], label=str(fromCountry[i]),
                 width=0.35, color=('#426BBF' if i % 2 != 0 else 'grey'))
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
+    plt.xlim(0, 8)
     plt.title('Titanic Embarked Analysis')
 
     # '#' Creates bar for question #6
     question6 = get_question_six(out)
     plt.subplot(235)
+    plt.autoscale(True)
     plt.bar([1], question6[1], label="One 1st Name", width=0.35, color='#426BBF')
     plt.bar([2], question6[0], label="Two 1st Name", width=0.35, color='#0072BF')
     plt.bar([3], question6[2], label=">2 1st Name", width=0.35, color='#004473')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
+    plt.xlim(0, 5)
     plt.title('Titanic first name analysis')
 
     # '#' Creates a bar for question #7
     question7 = get_question_seven(out)
     plt.subplot(236)
+    plt.autoscale(True)
     plt.bar([1], question7[1], label="Total", width=0.35, color='#426BBF')
     plt.bar([2], question7[0], label="Survivor", width=0.35, color='#0072BF')
     plt.bar([3], question7[2], label="On-board", width=0.35, color='#004473')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     plt.xlabel('bar number')
     plt.ylabel('bar height')
+    plt.xlim(0, 5)
     plt.title('Titanic Married Analysis')
 
-    #Shows the complete plot
+    plt.tight_layout()
     plt.show()
 
 if __name__ == '__main__':
